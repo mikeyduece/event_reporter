@@ -4,7 +4,7 @@ require './lib/attendee'
 class AttendeeTest < Minitest::Test
   attr_reader :attendee
   def setup
-    @attendee = Attendee.new({id: 1, regdate: Time.now,first_name: "Allison",
+    @attendee = Attendee.new({regdate: Time.now,first_name: "Allison",
       last_name: "Nguyen", email_address: "arannon@jumpstartlab.com",
       homephone: "6154385000", street: "3155 19th St NW",
       city: "Washington", state: "DC", zipcode: 20010})
@@ -12,10 +12,6 @@ class AttendeeTest < Minitest::Test
 
   def test_its_a_thing
     assert_instance_of Attendee, attendee
-  end
-
-  def test_it_can_see_id
-    assert_equal 1, attendee.id
   end
 
   def test_it_can_see_reg_date
