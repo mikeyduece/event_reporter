@@ -42,4 +42,17 @@ class AttendeeRepoTest < Minitest::Test
     assert_instance_of Attendee, ar.find_by_street("3024 Cranbrook Ct")[0]
   end
 
+  def test_it_can_find_by_state
+    assert_equal 3, ar.find_by_state("CA").count
+    assert_instance_of Array, ar.find_by_state("CA")
+    assert_instance_of Attendee, ar.find_by_state("CA")[0]
+  end
+
+  def test_it_can_find_by_zipcode
+    assert_equal 1, ar.find_by_zipcode(95667).count
+    assert_instance_of Array, ar.find_by_zipcode(95667)
+    assert_instance_of Attendee, ar.find_by_zipcode(95667)[0]
+  end
+
+
 end

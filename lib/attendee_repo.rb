@@ -13,7 +13,12 @@ class AttendeeRepo
     CSV.foreach filename, headers: true, header_converters: :symbol do |row|
       @all_attendees << Attendee.new(row, self)
       id = row[0]
+      zipcode = clean_zipcode(row[:zipcode])
     end
+  end
+
+  def clean_zipcode(zipcode)
+    zipcode.to_s.rjust(5,"0")[0..4]
   end
 
   def all
@@ -62,6 +67,19 @@ class AttendeeRepo
     return streets
   end
 
+  def find_by_state(statey)
+    states = all.find_all do |attendee|
+      attendee.state.downcase.include?(statey.downcase)
+    end
+    return [] if states.empty?
+    return states
+  end
 
-
+  def find_by_zipcode(zipcoder)
+    zipcodes = all.find_all do |attendee|
+      attendee.zipcode == zipcoder
+    end
+    return [] if zipcodes.empty?
+    return zipcodes
+  end
 end
