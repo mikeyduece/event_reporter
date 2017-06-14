@@ -35,7 +35,23 @@ class AttendeeTest < Minitest::Test
   end
 
   def test_it_can_see_phone_num
-    assert_equal "6154385000"
+    assert_equal 6154385000, attendee.home_phone
+  end
+
+  def test_it_can_see_the_street
+    assert_equal "3155 19th St NW", attendee.street
+  end
+
+  def test_it_can_see_city
+    assert_equal "Washington", attendee.city
+  end
+
+  def test_it_can_see_state
+    assert_equal "DC", attendee.state
+  end
+
+  def test_it_can_see_zipcode
+    assert_equal 20010, attendee.zipcode
   end
 
 end
