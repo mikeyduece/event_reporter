@@ -3,6 +3,21 @@
     "coverage": {
       "/Users/mikeheft/turing/mod1/projects/event_reporter/lib/attendee.rb": [
         1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
         null
       ],
@@ -13,6 +28,6 @@
         null
       ]
     },
-    "timestamp": 1497476156
+    "timestamp": 1497477671
   }
 }
