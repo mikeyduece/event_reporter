@@ -1,6 +1,11 @@
 {
   "Unit Tests": {
     "coverage": {
+      "/Users/mikeheft/turing/mod1/projects/event_reporter/lib/attendee.rb": [
+        1,
+        null,
+        null
+      ],
       "/Users/mikeheft/turing/mod1/projects/event_reporter/lib/queue.rb": [
         1,
         1,
@@ -8,6 +13,6 @@
         null
       ]
     },
-    "timestamp": 1497475675
+    "timestamp": 1497476156
   }
 }

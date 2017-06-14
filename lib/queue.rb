@@ -1,4 +1,4 @@
 class Queue
-  def initialize(filename)
+  def initialize
   end
 end
