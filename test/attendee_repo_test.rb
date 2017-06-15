@@ -2,11 +2,12 @@ require './test/test_helper'
 require './lib/attendee_repo'
 
 class AttendeeRepoTest < Minitest::Test
-  attr_reader :ar
+  attr_reader :ar, :q
 
   def setup
+    @q = Queue.new
+    q.loaded
     @ar = AttendeeRepo.new("./data/event_attendees.csv")
-    
   end
 
   def test_its_a_thing

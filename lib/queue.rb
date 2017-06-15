@@ -1,10 +1,10 @@
 require './lib/attendee_repo'
 
 class Queue
-  attr_reader :attendees
+  attr_reader :attendees, :loaded
 
-  def initialize(data)
-    @attendees = AttendeeRepo.new
+  def initialize
+    @attendees = AttendeeRepo.new("./data/event_attendees.csv",self)
     @queued = []
   end
 
@@ -12,7 +12,7 @@ class Queue
     @queued.count
   end
 
-  def load
-    if File.exists?
+  def loaded
+    attendees.open_file("./data/event_attendees.csv")
   end
 end
