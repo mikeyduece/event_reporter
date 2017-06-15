@@ -36,7 +36,7 @@ class AttendeeRepo
 
   def find_all_by_first_name(fname)
     first_names = all.find_all do |attendee|
-      attendee.first_name.downcase.include?(fname.downcase)
+      attendee.first_name.downcase == fname.downcase
     end
     return [] if first_names.empty?
     return first_names
@@ -44,7 +44,7 @@ class AttendeeRepo
 
   def find_all_by_last_name(lname)
     last_names = all.find_all do |attendee|
-      attendee.last_name.downcase.include?(lname.downcase)
+      attendee.last_name.downcase == lname.downcase
     end
     return [] if last_names.empty?
     return last_names

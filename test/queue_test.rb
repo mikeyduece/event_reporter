@@ -15,4 +15,10 @@ class QueueTest < Minitest::Test
     assert_equal 0, queue.count
   end
 
+  def test_it_can_find_johns
+    assert_equal 63, queue.find_first_name("John").count
+    assert_equal 63, queue.count
+  end
+
+
 end
