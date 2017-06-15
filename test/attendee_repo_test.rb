@@ -6,7 +6,6 @@ class AttendeeRepoTest < Minitest::Test
 
   def setup
     @q = Queue.new
-    q.loaded
     @ar = AttendeeRepo.new("./data/event_attendees.csv")
   end
 

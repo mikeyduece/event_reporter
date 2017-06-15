@@ -27,5 +27,12 @@ class QueueTest < Minitest::Test
     assert_equal 0, queue.count
   end
 
+  def test_can_it_give_district_info
+    queue.find_first_name("Audrey")
+    assert_equal 3, queue.count
+    queue.district
+    
+  end
+
 
 end
