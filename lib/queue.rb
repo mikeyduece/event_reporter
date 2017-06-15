@@ -34,7 +34,7 @@ class Queue
 
   def district
     if count < 10 && !@queued.empty?
-      @queued.map do |attendee|
+      @queued.each do |attendee|
         first       = attendee.first_name.capitalize
         last        = attendee.last_name.capitalize
         name        = "#{first} #{last}"
