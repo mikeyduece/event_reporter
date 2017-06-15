@@ -6,6 +6,7 @@ class AttendeeRepoTest < Minitest::Test
 
   def setup
     @ar = AttendeeRepo.new("./data/event_attendees.csv")
+    
   end
 
   def test_its_a_thing

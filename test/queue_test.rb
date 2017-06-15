@@ -11,4 +11,8 @@ class QueueTest < Minitest::Test
     assert_instance_of Queue, data
   end
 
+  def test_queue_count_zero_by_default
+    assert_equal 0, queue.count
+  end
+
 end
