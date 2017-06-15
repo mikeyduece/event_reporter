@@ -23,7 +23,6 @@ class AttendeeRepo
 
   def all
     @all_attendees
-    require "pry"; binding.pry
   end
 
   def find_by_id(id)
