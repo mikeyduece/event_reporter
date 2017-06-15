@@ -12,7 +12,6 @@ class Queue
 
   def count
     @queued.count
-    require "pry"; binding.pry
   end
 
   def find_first_name(name)
@@ -41,7 +40,6 @@ class Queue
         name        = "#{first} #{last}"
         zipcode     = attendee.zipcode
         legislators = legislators_by_zipcode(zipcode)
-
         puts "#{name} #{zipcode} #{legislators}"
       end
     else
@@ -51,6 +49,7 @@ class Queue
 
   # def print
   #   @queued.each do |attendee|
+  #
   #
   #
   # end

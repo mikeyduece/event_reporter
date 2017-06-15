@@ -1,10 +1,10 @@
 module EventMessages
   def queue_help(command=nil)
-    puts "The queue holds the stored search results form previous searches.\n
-    It is not cleared until the user enters the queue clear command or starts\n
-    a new seach.\n
-      \tThe queue related commands are: count, clear, print,\n
-      \tprint_by<attribute>, and print_by<filename.csv>"
+    puts "The queue holds the stored search results form previous searches.
+    It is not cleared until the user enters the queue clear command or starts
+    a new seach.
+      The queue related commands are: count, clear, print,
+      print_by<attribute>, and print_by<filename.csv>"
   end
 
   def attribute_help
@@ -31,5 +31,26 @@ module EventMessages
     puts "Print out a tab-delimited data table with a header row following this format:
 
       LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE  DISTRICT"
+  end
+
+  def welcome
+    puts "Welcome to Event Reporter. Type 'help' for a list of commands."
+  end
+
+  def table_header
+    puts "LAST NAME"+" "*5+"FIRST NAME"+" "*5+"EMAIL"+" "*5+"ZIPCODE"+" "*5+
+    "CITY"+" "*5+"STATE"+" "*5+"ADDRESS"+" "*5+"PHONE"+" "*5+"DISTRICT"
+  end
+
+  def commands
+    puts "Commands:
+            -load <filename>
+            -help
+            -help <command>
+            -print
+            -print by <attribute>
+            -save to <filename.csv>
+            -export html <filename.csv>
+            -find <attribute> <criteria>"
   end
 end
