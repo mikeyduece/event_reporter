@@ -20,5 +20,12 @@ class QueueTest < Minitest::Test
     assert_equal 63, queue.count
   end
 
+  def test_it_can_clear_queue
+    queue.find_first_name("John")
+    assert_equal 63, queue.count
+    queue.clear
+    assert_equal 0, queue.count
+  end
+
 
 end

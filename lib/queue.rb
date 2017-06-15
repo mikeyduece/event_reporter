@@ -17,6 +17,10 @@ class Queue
     return names.flatten!
   end
 
+  def clear
+    @queued = []
+  end
+
   # def loaded
   #   attendees.open_file("./data/event_attendees.csv")
   # end
