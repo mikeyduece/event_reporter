@@ -26,6 +26,7 @@ class Queue
   def legislators_by_zipcode(zipcode)
     legislators = Sunlight::Congress::Legislator.by_zipcode(zipcode)
 
+    require "pry"; binding.pry
     legislator_names = legislators.collect do |legislator|
     "#{legislator.first_name} #{legislator.last_name}"
     end
@@ -47,6 +48,12 @@ class Queue
       nil
     end
   end
+
+  # def print
+  #   @queued.each do |attendee|
+  #
+  #
+  # end
 
   # def loaded
   #   attendees.open_file("./data/event_attendees.csv")
