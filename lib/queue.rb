@@ -12,6 +12,7 @@ class Queue
 
   def count
     @queued.count
+    require "pry"; binding.pry
   end
 
   def find_first_name(name)
@@ -26,7 +27,6 @@ class Queue
   def legislators_by_zipcode(zipcode)
     legislators = Sunlight::Congress::Legislator.by_zipcode(zipcode)
 
-    require "pry"; binding.pry
     legislator_names = legislators.collect do |legislator|
     "#{legislator.first_name} #{legislator.last_name}"
     end
