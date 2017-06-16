@@ -44,6 +44,7 @@ class EventReporter
     when "help" then help
     when "find" then queue.finder
     when "print" then queue.printer
+    when "load" then queue.loader
     when "queue count" then queue.count
     when "queue clear" then queue.clear
     else

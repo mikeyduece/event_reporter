@@ -14,7 +14,7 @@ class Queue
     @queued.count
   end
 
-  def finder(attribute criteria)
+  def find_first_name(name)
     names = @queued << attendees.find_all_by_first_name(name)
     return names.flatten!
   end
@@ -32,19 +32,19 @@ class Queue
     legislator_names.join(", ")
   end
 
-  # def district
-  #   if count < 10 && !@queued.empty?
-  #     @queued.each do |attendee|
-  #       first       = attendee.first_name.capitalize
-  #       last        = attendee.last_name.capitalize
-  #       name        = "#{first} #{last}"
-  #       zipcode     = attendee.zipcode
-  #       legislators = legislators_by_zipcode(zipcode)
-  #       puts "#{name} #{zipcode} #{legislators}"
-  #     end
-  #   else
-  #     nil
-  #   end
+  def district
+    if count < 10 && !@queued.empty?
+      @queued.each do |attendee|
+        first       = attendee.first_name.capitalize
+        last        = attendee.last_name.capitalize
+        name        = "#{first} #{last}"
+        zipcode     = attendee.zipcode
+        legislators = legislators_by_zipcode(zipcode)
+        puts "#{name} #{zipcode} #{legislators}"
+      end
+    else
+      nil
+    end
   end
 
   # def print
