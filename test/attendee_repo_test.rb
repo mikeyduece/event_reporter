@@ -23,11 +23,11 @@ class AttendeeRepoTest < Minitest::Test
   #   assert_instance_of Attendee, id.first.id
   # end
   #
-  # def test_it_can_find_by_first_name
-  #   assert_equal 2, ar.find_all_by_first_name("Sarah").count
-  #   assert_instance_of Array, ar.find_all_by_first_name("Sarah")
-  #   assert_instance_of Attendee, ar.find_all_by_first_name("Sarah")[0]
-  # end
+  def test_it_can_find_by_first_name
+    assert_equal 2, ar.find("first_name","Sarah").count
+    assert_instance_of Array, ar.find("first_name","Sarah")
+    assert_instance_of Attendee, ar.find("first_name","Sarah")[0]
+  end
   #
   # def test_it_can_find_by_last_name
   #   assert_equal 1, ar.find_all_by_last_name("Nguyen").count

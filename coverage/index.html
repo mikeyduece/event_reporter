@@ -14,7 +14,7 @@
       <img src="./assets/0.10.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-06-16T13:58:53-06:00">2017-06-16T13:58:53-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-06-16T14:01:21-06:00">2017-06-16T14:01:21-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         5185.15
+         5185.6
        </span>
     </span> hits/line)
   </h2>
@@ -67,7 +67,7 @@
         <td>55</td>
         <td>27</td>
         <td>28</td>
-        <td>2639.9</td>
+        <td>2640.7</td>
       </tr>
       
       <tr>
@@ -375,8 +375,8 @@
           <code class="ruby">  def all</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="25">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="4" data-linenumber="25">
+          <span class="hits">4</span>
           
           <code class="ruby">    @all_attendees</code>
         </li>
@@ -399,16 +399,16 @@
           <code class="ruby">  def find(attribute, criteria)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="29">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="29">
+          <span class="hits">3</span>
           
           <code class="ruby">    search = all.find_all do |attendee|</code>
         </li>
       
-        <li class="covered" data-hits="19" data-linenumber="30">
-          <span class="hits">19</span>
+        <li class="covered" data-hits="57" data-linenumber="30">
+          <span class="hits">57</span>
           
-          <code class="ruby">      attendee.send(attribute.to_sym).to_s.downcase == criteria.to_s.downcase</code>
+          <code class="ruby">      attendee.send(attribute.to_sym).to_s.downcase == criteria.downcase</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">
@@ -417,8 +417,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="32">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="3" data-linenumber="32">
+          <span class="hits">3</span>
           
           <code class="ruby">    return search</code>
         </li>
