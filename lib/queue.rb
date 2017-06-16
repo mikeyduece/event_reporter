@@ -19,9 +19,9 @@ class Queue
   end
 
   def finder(attribute, criteria)
-    queue.clear
-    all_attendees.find(attribute, criteria)
-
+    clear
+    @queued << attendees.find(attribute, criteria)
+    return @queued.flatten!
   end
 
   def clear
