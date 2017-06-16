@@ -9,22 +9,8 @@ class EventReporter
 
   def initialize
     @queue = Queue.new
-    @running = true
-    @input = input
   end
 
-  def input
-    @input
-  end
-
-  def running?
-    @running
-  end
-
-  def get_input
-    user_input = input.gets.chomp
-    input_check
-  end
 
   def help(command=nil)
     commands if command == nil
@@ -37,18 +23,16 @@ class EventReporter
     start
   end
 
-  def start
+  def start(attribute=nil,criteria=nil)
     welcome
     input = gets.chomp.downcase
     case input
     when "help" then help
-    when "find" then queue.finder
+    when "find" then queue.finder(attribute,criteria)
     when "print" then queue.printer
     when "load" then queue.loader
     when "queue count" then queue.count
     when "queue clear" then queue.clear
-    else
-      puts "Not a valid command. Please try again"
       start
     end
 

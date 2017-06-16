@@ -52,6 +52,10 @@ class Queue
     end
   end
 
+  def loader
+    filename ||="./data/event_attendees.csv"
+    attendees.open_file(filename)
+  end
   # def print
   #   @queued.each do |attendee|
   #
@@ -59,7 +63,4 @@ class Queue
   #
   # end
 
-  # def loaded
-  #   attendees.open_file("./data/event_attendees.csv")
-  # end
 end
