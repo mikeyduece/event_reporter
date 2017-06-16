@@ -26,11 +26,10 @@ class AttendeeRepo
   end
 
   def find(attribute, criteria)
-    search = all.group_by(attribute)
-      searched = search.keys.find_all do |value|
-        value == criteria
-      end
-      return searched.flatten!
+    search = all.find_all do |attendee|
+      attendee.send(attribute.to_sym).to_s.downcase == criteria.downcase
+    end
+    return search
   end
 
   def find_by_id(id)

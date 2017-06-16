@@ -18,10 +18,10 @@ class AttendeeRepoTest < Minitest::Test
     assert_equal 19, ar.all.count
   end
 
-  def test_it_can_find_by_id
-    require "pry"; binding.pry
-    assert_instance_of Attendee, ar.find(id, 1)
-  end
+  # def test_it_can_find_by_id
+  #   id = ar.find("id", 1)
+  #   assert_instance_of Attendee, id.first.id
+  # end
   #
   # def test_it_can_find_by_first_name
   #   assert_equal 2, ar.find_all_by_first_name("Sarah").count
