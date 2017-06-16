@@ -34,6 +34,7 @@ class EventReporter
     when "attributes" then attribute_help
     when "print"      then print_help
     end
+    start
   end
 
   def start
