@@ -16,11 +16,13 @@ class QueueTest < Minitest::Test
   end
 
   def test_it_can_find_johns
+    skip
     assert_equal 63, queue.find_first_name("John").count
     assert_equal 63, queue.count
   end
 
   def test_it_can_clear_queue
+    skip
     queue.find_first_name("John")
     assert_equal 63, queue.count
     queue.clear

@@ -3,7 +3,7 @@ require 'sunlight/congress'
 
 class Queue
   Sunlight::Congress.api_key = "e179a6973728c4dd3fb1204283aaccb5"
-  attr_reader :attendees
+  attr_reader :attendees, :all_attendees
 
   def initialize
     @attendees = AttendeeRepo.new("./data/full_event_attendees.csv",self)
@@ -14,9 +14,13 @@ class Queue
     @queued.count
   end
 
-  def find_first_name(name)
-    names = @queued << attendees.find_all_by_first_name(name)
-    return names.flatten!
+  def all_attendees
+    attendees.all
+  end
+
+  def finder(attribute, criteria)
+    all_attendees.find(attribute, criteria)
+
   end
 
   def clear

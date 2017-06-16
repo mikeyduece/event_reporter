@@ -25,6 +25,14 @@ class AttendeeRepo
     @all_attendees
   end
 
+  def find(attribute, criteria)
+    search = all.group_by(attribute)
+      searched = search.keys.find_all do |value|
+        value == criteria
+      end
+      return searched.flatten!
+  end
+
   def find_by_id(id)
     all.find do |attendee|
       if attendee.id == id
