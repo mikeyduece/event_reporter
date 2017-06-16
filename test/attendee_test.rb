@@ -31,7 +31,7 @@ class AttendeeTest < Minitest::Test
   end
 
   def test_it_can_see_phone_num
-    assert_equal 6154385000, attendee.home_phone
+    assert_equal 6154385000, attendee.phone.to_i
   end
 
   def test_it_can_see_the_street

@@ -19,6 +19,7 @@ class Queue
   end
 
   def finder(attribute, criteria)
+    queue.clear
     all_attendees.find(attribute, criteria)
 
   end

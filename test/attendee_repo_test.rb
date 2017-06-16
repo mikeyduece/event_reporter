@@ -28,34 +28,34 @@ class AttendeeRepoTest < Minitest::Test
     assert_instance_of Array, ar.find("first_name","Sarah")
     assert_instance_of Attendee, ar.find("first_name","Sarah")[0]
   end
-  #
-  # def test_it_can_find_by_last_name
-  #   assert_equal 1, ar.find_all_by_last_name("Nguyen").count
-  #   assert_instance_of Array, ar.find_all_by_last_name("Nguyen")
-  #   assert_instance_of Attendee, ar.find_all_by_last_name("Nguyen")[0]
-  # end
-  #
-  # def test_it_can_find_by_phone_number
-  #   assert_instance_of Attendee, ar.find_by_phone(6154385000)
-  # end
-  #
-  # def test_it_can_find_by_street
-  #   assert_equal 1, ar.find_by_street("3024 Cranbrook Ct").count
-  #   assert_instance_of Array, ar.find_by_street("3024 Cranbrook Ct")
-  #   assert_instance_of Attendee, ar.find_by_street("3024 Cranbrook Ct")[0]
-  # end
-  #
-  # def test_it_can_find_by_state
-  #   assert_equal 3, ar.find_by_state("CA").count
-  #   assert_instance_of Array, ar.find_by_state("CA")
-  #   assert_instance_of Attendee, ar.find_by_state("CA")[0]
-  # end
-  #
-  # def test_it_can_find_by_zipcode
-  #   assert_equal 1, ar.find_by_zipcode(95667).count
-  #   assert_instance_of Array, ar.find_by_zipcode(95667)
-  #   assert_instance_of Attendee, ar.find_by_zipcode(95667)[0]
-  # end
-  #
-  #
+
+  def test_it_can_find_by_last_name
+    assert_equal 1, ar.find("last_name","Nguyen").count
+    assert_instance_of Array, ar.find("last_name","Nguyen")
+    assert_instance_of Attendee, ar.find("last_name","Nguyen")[0]
+  end
+
+  def test_it_can_find_by_street
+    assert_equal 1, ar.find("street","3024 Cranbrook Ct").count
+    assert_instance_of Array, ar.find("street","3024 Cranbrook Ct")
+    assert_instance_of Attendee, ar.find("street","3024 Cranbrook Ct")[0]
+  end
+
+  def test_it_can_find_by_state
+    assert_equal 3, ar.find("state","CA").count
+    assert_instance_of Array, ar.find("state","CA")
+    assert_instance_of Attendee, ar.find("state","CA")[0]
+  end
+
+  def test_it_can_find_by_zipcode
+    assert_equal 1, ar.find("zipcode", "95667").count
+    assert_instance_of Array, ar.find("zipcode", "95667")
+    assert_instance_of Attendee, ar.find("zipcode", "95667")[0]
+  end
+
+  def test_it_can_find_by_phone_number
+    assert_equal 1, ar.find("phone", "787-295-0000").count
+    assert_instance_of Array, ar.find("phone", "787-295-0000")
+    assert_instance_of Attendee, ar.find("phone", "787-295-0000")[0]
+  end
 end
