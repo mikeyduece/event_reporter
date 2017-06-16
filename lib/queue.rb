@@ -6,7 +6,7 @@ class Queue
   attr_reader :attendees, :all_attendees
 
   def initialize
-    @attendees = AttendeeRepo.new("./data/full_event_attendees.csv",self)
+    @attendees = AttendeeRepo.new(self)
     @queued = []
   end
 
@@ -53,7 +53,7 @@ class Queue
   end
 
   def loader
-    filename ||="./data/event_attendees.csv"
+    filename ="./data/event_attendees.csv"
     attendees.open_file(filename)
   end
   # def print

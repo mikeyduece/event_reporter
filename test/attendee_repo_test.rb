@@ -5,9 +5,9 @@ class AttendeeRepoTest < Minitest::Test
   attr_reader :ar, :q
 
   def setup
-    @q = Queue.new
-    # q.loader
-    @ar = AttendeeRepo.new("./data/event_attendees.csv")
+    @q  = Queue.new
+    q.loader
+    @ar = AttendeeRepo.new#("./data/event_attendees.csv")
   end
 
   def test_its_a_thing
@@ -18,11 +18,10 @@ class AttendeeRepoTest < Minitest::Test
     assert_equal 19, ar.all.count
   end
 
-  # def test_it_can_find_by_id
-  #   id = ar.find("id", 1)
-  #   assert_instance_of Attendee, id.first.id
-  # end
-  #
+  def test_it_can_find_by_id
+    assert_instance_of Attendee, ar.find("id", 1)[0]
+  end
+
   def test_it_can_find_by_first_name
     assert_equal 2, ar.find("first_name","Sarah").count
     assert_instance_of Array, ar.find("first_name","Sarah")

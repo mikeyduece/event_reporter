@@ -2,11 +2,11 @@ require 'csv'
 require './lib/attendee'
 class AttendeeRepo
 
-  attr_reader :all, :find
+  attr_reader :all, :find, :open_file
 
-  def initialize(filename, parent=nil)
+  def initialize(parent=nil)
     @all_attendees = []
-    open_file(filename)
+    # open_file(filename)
   end
 
   def open_file(filename)
