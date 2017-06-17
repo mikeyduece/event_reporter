@@ -6,7 +6,7 @@ class Queue
   attr_reader :attendees, :all_attendees
 
   def initialize
-    @attendees = AttendeeRepo.new(self)
+    @attendees = AttendeeRepo.new
     @queued = []
   end
 
@@ -21,12 +21,10 @@ class Queue
   def finder(attribute, criteria)
     clear
     criteria.delete("-") if attribute == "phone"
-    search = all_attendees.find_all do |attendee|
+    @queued << all_attendees.find_all do |attendee|
       attendee.send(attribute.to_sym).to_s.downcase == criteria.to_s.downcase
-      @queued << search
     end
     return @queued.flatten!
-    require "pry"; binding.pry
   end
 
   def clear
@@ -42,26 +40,26 @@ class Queue
     legislator_names.join(", ")
   end
 
-  def district
-    if count < 10 && !@queued.empty?
-      @queued.each do |attendee|
-        first       = attendee.first_name.capitalize
-        last        = attendee.last_name.capitalize
-        name        = "#{first} #{last}"
-        zipcode     = attendee.zipcode
-        legislators = legislators_by_zipcode(zipcode)
-        puts "#{name} #{zipcode} #{legislators}"
-      end
-    else
-      nil
-    end
-  end
 
   def loader
-    filename ="./data/full_event_attendees.csv"
+    filename = "./data/full_event_attendees.csv"
     attendees.open_file(filename)
     # attendees.all << repo
   end
+  # def district
+  #   if count < 10 && !@queued.empty?
+  #     @queued.each do |attendee|
+  #       first       = attendee.first_name.capitalize
+  #       last        = attendee.last_name.capitalize
+  #       name        = "#{first} #{last}"
+  #       zipcode     = attendee.zipcode
+  #       legislators = legislators_by_zipcode(zipcode)
+  #       puts "#{name} #{zipcode} #{legislators}"
+  #     end
+  #   else
+  #     nil
+  #   end
+  # end
   # def print
   #   @queued.each do |attendee|
   #
