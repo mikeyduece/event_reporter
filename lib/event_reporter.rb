@@ -34,7 +34,7 @@ class EventReporter
   end
 
 
-  def help(command=nil)
+  def help#(command=nil)
     commands if command == nil
     case command
     when "queue"      then queue_help
@@ -48,9 +48,17 @@ class EventReporter
   def start
     welcome
     get_input
-    case get_input
+    if quit_commands(first_command)
+      exit
+    else
+      start_commands(first_command)
+    end
+  end
+
+  def start_commands(command)
+    case command
     when "queue" then queue_commands(second_command, third_command)
-    when "help"  then help
+    when "help"  then help(second_command)
     when "load"  then load_csv
     # when "find"  then queue.finder(attribute,criteria)
     # when "print" then queue.printer
@@ -58,15 +66,19 @@ class EventReporter
     end
   end
 
+  def quit_commands(command)
+    %w(q Q quit Quit QUIT).include?(command)
+  end
+
   def load_csv
     queue.loader
+    require "pry"; binding.pry
     loaded
     start
   end
 
   def queue_commands(second_command=nil,third_command=nil)
     queue_start
-    get_input
     case command
     when "count" then print_count(queue.count)
     when "clear" then queue.clear; puts "The queue is now empty."
