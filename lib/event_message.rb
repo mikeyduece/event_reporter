@@ -60,7 +60,7 @@ module EventMessages
   end
 
   def queue_start
-    puts "Your file is loaded, what would you like to do? (count, clear, find)".bold
+    puts "Your file is loaded, what would you like to do? (queue count, queue clear, queue find)".bold
   end
 
   def print_count(count)

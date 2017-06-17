@@ -6,8 +6,7 @@ require './lib/commands'
 class EventReporter
   include EventMessages
 
-  attr_reader :queue, :start, :commands, :input, :first_command, :second_command,
-              :third_command
+  attr_reader :queue, :start, :commands
 
   def initialize
     @queue          = Queue.new(self)
@@ -16,6 +15,22 @@ class EventReporter
     @second_command = nil
     @third_command  = nil
     @input = input
+  end
+
+  def input
+    @input
+  end
+
+  def first_command
+    @first_command
+  end
+
+  def second_command
+    @second_command
+  end
+
+  def third_command
+    @third_command
   end
 
 
@@ -30,15 +45,15 @@ class EventReporter
     start
   end
 
-  def start(attribute=nil,criteria=nil)
+  def start
     welcome
-    get_cmd
-    case input
+    get_input
+    case get_input
     when "queue" then queue_commands(second_command, third_command)
     when "help"  then help
-    when "find"  then queue.finder(attribute,criteria)
-    when "print" then queue.printer
     when "load"  then load_csv
+    # when "find"  then queue.finder(attribute,criteria)
+    # when "print" then queue.printer
       start
     end
   end
@@ -46,12 +61,12 @@ class EventReporter
   def load_csv
     queue.loader
     loaded
-    queue_commands
+    start
   end
 
   def queue_commands(second_command=nil,third_command=nil)
     queue_start
-    get_cmd
+    get_input
     case command
     when "count" then print_count(queue.count)
     when "clear" then queue.clear; puts "The queue is now empty."
@@ -59,8 +74,8 @@ class EventReporter
     end
   end
 
-  def get_cmd
-    user_input = input.gets.chomp
+  def get_input
+    user_input = gets.chomp
     commands.change_commands(user_input)
     set_commands
   end
