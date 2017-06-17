@@ -14,11 +14,6 @@ class EventReporter
     @first_command  = nil
     @second_command = nil
     @third_command  = nil
-    @input = input
-  end
-
-  def input
-    @input
   end
 
   def first_command
@@ -34,8 +29,9 @@ class EventReporter
   end
 
 
-  def help#(command=nil)
-    commands if command == nil
+  def help(command)
+    help_commands if command == nil
+    # require "pry"; binding.pry
     case command
     when "queue"      then queue_help
     when "find"       then find_help
@@ -72,7 +68,6 @@ class EventReporter
 
   def load_csv
     queue.loader
-    require "pry"; binding.pry
     loaded
     start
   end
@@ -90,12 +85,13 @@ class EventReporter
     user_input = gets.chomp
     commands.change_commands(user_input)
     set_commands
+    # require "pry"; binding.pry
   end
 
   def set_commands
     @first_command = commands.first_command
-    @second_command = string_format(commands.second_command) if !second_command.nil?
-    @third_command = commands.third_command if !third_command.nil?
+    @second_command = string_format(commands.second_command) if commands.second_command != nil
+    @third_command = commands.third_command if commands.third_command != nil
   end
 
   def string_format(string)

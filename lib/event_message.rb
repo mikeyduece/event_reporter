@@ -1,11 +1,11 @@
 require 'colorize'
 module EventMessages
-  def queue_help(command=nil)
+  def queue_help
     puts "The queue holds the stored search results form previous searches.
     It is not cleared until the user enters the queue clear command or starts
     a new seach.
-      The queue related commands are: count, clear, print,
-      print_by<attribute>, and print_by<filename.csv>"
+      The queue related commands are: queue count, queue clear, queue print,
+      queue print_by<attribute>, and queue print_by<filename.csv>"
   end
 
   def attribute_help
@@ -43,9 +43,11 @@ module EventMessages
     "CITY"+" "*5+"STATE"+" "*5+"ADDRESS"+" "*5+"PHONE".cyan.bold
   end
 
-  def commands
+  def help_commands
     puts "Commands:
             -load <filename>
+            -queue count
+            -queue clear
             -help
             -help <command>
             -print
