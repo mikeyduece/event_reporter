@@ -58,8 +58,8 @@ class EventReporter
     when "queue" then queue_commands(second_command, third_command)
     when "help"  then help(second_command)
     when "load"  then load_csv
-    # when "find"  then queue.finder(attribute,criteria)
-    # when "print" then queue.printer
+    when "find"  then queue.finder(second_command,third_command)
+    when "print" then queue.printer
       start
     end
   end
@@ -71,8 +71,8 @@ class EventReporter
   def load_csv
     queue.loader
     loaded
-    start
     @loaded = true
+    start
   end
 
   def queue_commands(command,third_command=nil)
@@ -84,16 +84,15 @@ class EventReporter
   end
 
   def find(second_command, third_command)
-    require "pry"; binding.pry
-    if second_command == nil || third_command == nil
-        wrong_number_of_args
-        start
-    elsif @loaded == false
+    # if second_command == nil || third_command == nil
+    #     wrong_number_of_args
+    #     start
+    if @loaded == false
       puts "Please load file before searching the queue."
       start
-    elsif @loaded == true
+  elsif @loaded == true
       search = queue.finder(second_command, third_command)
-      search_results(search)
+      search_results(search.count)
     end
   end
 
