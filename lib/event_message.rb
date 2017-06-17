@@ -1,3 +1,4 @@
+require 'colorize'
 module EventMessages
   def queue_help(command=nil)
     puts "The queue holds the stored search results form previous searches.
@@ -34,12 +35,13 @@ module EventMessages
   end
 
   def welcome
-    puts "Welcome to Event Reporter. Type 'help' for a list of commands."
+    puts ("_"*62).bold.underline
+    puts "Welcome to Event Reporter. Type 'help' for a list of commands.".bold.underline
   end
 
   def table_header
     puts "LAST NAME"+" "*5+"FIRST NAME"+" "*5+"EMAIL"+" "*5+"ZIPCODE"+" "*5+
-    "CITY"+" "*5+"STATE"+" "*5+"ADDRESS"+" "*5+"PHONE"+" "*5+"DISTRICT"
+    "CITY"+" "*5+"STATE"+" "*5+"ADDRESS"+" "*5+"PHONE".cyan.bold
   end
 
   def commands
@@ -51,6 +53,6 @@ module EventMessages
             -print by <attribute>
             -save to <filename.csv>
             -export html <filename.csv>
-            -find <attribute> <criteria>"
+            -find <attribute> <criteria>".yellow.bold
   end
 end

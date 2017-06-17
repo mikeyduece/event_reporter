@@ -44,7 +44,6 @@ class Queue
   def loader
     filename = "./data/full_event_attendees.csv"
     attendees.open_file(filename)
-    # attendees.all << repo
   end
   # def district
   #   if count < 10 && !@queued.empty?

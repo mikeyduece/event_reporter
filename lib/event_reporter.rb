@@ -5,7 +5,7 @@ require './lib/event_message'
 class EventReporter
   include EventMessages
 
-  attr_reader :queue, :input
+  attr_reader :queue
 
   def initialize
     @queue = Queue.new
