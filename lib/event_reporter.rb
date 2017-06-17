@@ -84,15 +84,17 @@ class EventReporter
   end
 
   def find(second_command, third_command)
+    require "pry"; binding.pry
     if second_command == nil || third_command == nil
-      puts "Please enter an attribute to search along with criteria to match.
-        i.e find attribute criteria."
+        wrong_number_of_args
         start
     elsif @loaded == false
       puts "Please load file before searching the queue."
       start
     elsif @loaded == true
-      search = 
+      search = queue.finder(second_command, third_command)
+      search_results(search)
+    end
   end
 
   def get_input

@@ -14,7 +14,7 @@ module EventMessages
   end
 
   def attribute_help
-    "The criteria you can search for are:
+    puts "The criteria you can search for are:
       - last_name
       - first_name
       - email
@@ -24,13 +24,13 @@ module EventMessages
       - street
       - city
       - state
-      - home_phone"
+      - home_phone".white
   end
 
   def find_help
     puts "The find command searches the attendees matching your search criteria.
       Search format is as follows
-      find <attribute> <criteria>."
+      'find fist name john'."
   end
 
   def print_help
@@ -49,7 +49,7 @@ module EventMessages
 
   def help_commands
     puts "Commands:
-            -load <filename>
+            -load
             -queue count
             -queue clear
             -help
@@ -67,5 +67,17 @@ module EventMessages
 
   def print_count(count)
     puts "There are #{count} records currently in the queue".bold
+  end
+
+  def search_results(search)
+    puts "There are #{search} matches."
+  end
+
+  def wrong_number_of_args
+    if second_command != nil && third_command == nil
+      puts "Wrong number of aruments. Given: 1 Expected: 2"
+    elsif second_command == nil && third_command == nil
+      puts "Wrong number of arguments. Given: 0 Expecting: 2"
+    end
   end
 end
