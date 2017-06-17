@@ -20,8 +20,13 @@ class Queue
 
   def finder(attribute, criteria)
     clear
-    @queued << attendees.find(attribute, criteria)
+    criteria.delete("-") if attribute == "phone"
+    search = all_attendees.find_all do |attendee|
+      attendee.send(attribute.to_sym).to_s.downcase == criteria.to_s.downcase
+      @queued << search
+    end
     return @queued.flatten!
+    require "pry"; binding.pry
   end
 
   def clear
@@ -53,8 +58,9 @@ class Queue
   end
 
   def loader
-    filename ="./data/event_attendees.csv"
+    filename ="./data/full_event_attendees.csv"
     attendees.open_file(filename)
+    # attendees.all << repo
   end
   # def print
   #   @queued.each do |attendee|

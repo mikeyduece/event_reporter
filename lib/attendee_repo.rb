@@ -25,12 +25,12 @@ class AttendeeRepo
     @all_attendees
   end
 
-  def find(attribute, criteria)
-    criteria.delete("-") if attribute == "phone"
-    search = all.find_all do |attendee|
-      attendee.send(attribute.to_sym).to_s.downcase == criteria.to_s.downcase
-    end
-    return search
-  end
+  # def find(attribute, criteria)
+  #   criteria.delete("-") if attribute == "phone"
+  #   search = all.find_all do |attendee|
+  #     attendee.send(attribute.to_sym).to_s.downcase == criteria.to_s.downcase
+  #   end
+  #   return search
+  # end
 
 end
