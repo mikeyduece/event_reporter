@@ -1,11 +1,16 @@
 require 'colorize'
 module EventMessages
-  def queue_help
-    puts "The queue holds the stored search results form previous searches.
-    It is not cleared until the user enters the queue clear command or starts
-    a new seach.
-      The queue related commands are: queue count, queue clear, queue print,
-      queue print_by<attribute>, and queue print_by<filename.csv>"
+  def queue_help(command)
+    case command
+    when "count" then puts "Displays amount of current entries in queue.".white.bold
+    when "clear" then puts "Clears the current queue of all entries.".white.bold
+    when "print" then print_help
+    end
+    # puts "The queue holds the stored search results form previous searches.
+    # It is not cleared until the user enters the queue clear command or starts
+    # a new seach.
+    #   The queue related commands are: queue count, queue clear, queue print,
+    #   queue print_by<attribute>, and queue print_by<filename.csv>"
   end
 
   def attribute_help
@@ -25,13 +30,12 @@ module EventMessages
   def find_help
     puts "The find command searches the attendees matching your search criteria.
       Search format is as follows
-      find(attribute, criteria)."
+      find <attribute> <criteria>."
   end
 
   def print_help
-    puts "Print out a tab-delimited data table with a header row following this format:
-
-      LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE  DISTRICT"
+    puts "Print out a tab-delimited data table with a header row following this format:"
+    puts "LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE  DISTRICT".bold.underline
   end
 
   def welcome
@@ -58,11 +62,7 @@ module EventMessages
   end
 
   def loaded
-    puts "File loaded."
-  end
-
-  def queue_start
-    puts "Your file is loaded, what would you like to do? (queue count, queue clear, queue find)".bold
+    puts "File loaded.".bold
   end
 
   def print_count(count)

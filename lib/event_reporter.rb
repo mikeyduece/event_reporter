@@ -1,6 +1,6 @@
 require 'colorize'
 require './lib/queue'
-require './lib/event_message'
+require './lib/event_messages'
 require './lib/commands'
 
 class EventReporter
@@ -14,6 +14,7 @@ class EventReporter
     @first_command  = nil
     @second_command = nil
     @third_command  = nil
+    @loaded = false
   end
 
   def first_command
@@ -33,10 +34,11 @@ class EventReporter
     help_commands if command == nil
     # require "pry"; binding.pry
     case command
-    when "queue"      then queue_help
+    when "queue"      then queue_help(third_command)
     when "find"       then find_help
     when "attributes" then attribute_help
     when "print"      then print_help
+    else help_commands
     end
     start
   end
@@ -70,15 +72,27 @@ class EventReporter
     queue.loader
     loaded
     start
+    @loaded = true
   end
 
-  def queue_commands(second_command=nil,third_command=nil)
-    queue_start
+  def queue_commands(command,third_command=nil)
     case command
     when "count" then print_count(queue.count)
     when "clear" then queue.clear; puts "The queue is now empty."
-    when "find"  then queue.finder
+    when "find"  then find(second_command, third_command)
     end
+  end
+
+  def find(second_command, third_command)
+    if second_command == nil || third_command == nil
+      puts "Please enter an attribute to search along with criteria to match.
+        i.e find attribute criteria."
+        start
+    elsif @loaded == false
+      puts "Please load file before searching the queue."
+      start
+    elsif @loaded == true
+      search = 
   end
 
   def get_input
