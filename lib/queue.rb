@@ -3,11 +3,12 @@ require 'sunlight/congress'
 
 class Queue
   Sunlight::Congress.api_key = "e179a6973728c4dd3fb1204283aaccb5"
-  attr_reader :attendees, :all_attendees
+  attr_reader :attendees, :all_attendees, :er
 
-  def initialize
+  def initialize(parent=nil)
     @attendees = AttendeeRepo.new
-    @queued = []
+    @er        = parent
+    @queued    = []
   end
 
   def count

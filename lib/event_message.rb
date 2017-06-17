@@ -35,8 +35,7 @@ module EventMessages
   end
 
   def welcome
-    puts ("_"*62).bold.underline
-    puts "Welcome to Event Reporter. Type 'help' for a list of commands.".bold.underline
+    puts "Welcome to Event Reporter. Type 'help' for a list of commands. Or enter command to begin.".cyan.bold.underline
   end
 
   def table_header
@@ -54,5 +53,9 @@ module EventMessages
             -save to <filename.csv>
             -export html <filename.csv>
             -find <attribute> <criteria>".yellow.bold
+  end
+
+  def loaded
+    puts "File loaded."
   end
 end

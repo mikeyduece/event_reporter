@@ -5,10 +5,10 @@ require './lib/event_message'
 class EventReporter
   include EventMessages
 
-  attr_reader :queue
+  attr_reader :queue, :start
 
   def initialize
-    @queue = Queue.new
+    @queue = Queue.new(self)
   end
 
 
@@ -30,12 +30,18 @@ class EventReporter
     when "help" then help
     when "find" then queue.finder(attribute,criteria)
     when "print" then queue.printer
-    when "load" then queue.loader
+    when "load" then load_csv
     when "queue count" then queue.count
     when "queue clear" then queue.clear
       start
     end
+  end
 
+  def load_csv
+    queue.loader
+    if File.exists?(queue.loader)
+      loaded
+    end
   end
 end
 start = EventReporter.new
