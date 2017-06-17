@@ -31,16 +31,23 @@ class EventReporter
     when "find" then queue.finder(attribute,criteria)
     when "print" then queue.printer
     when "load" then load_csv
-    when "queue count" then queue.count
-    when "queue clear" then queue.clear
       start
     end
   end
 
   def load_csv
     queue.loader
-    if File.exists?(queue.loader)
-      loaded
+    loaded
+    queue_commands
+  end
+
+  def queue_commands(command=nil)
+    queue_start
+    input = gets.chomp.downcase
+    case command
+    when "count" then print_count(queue.count)
+    when "clear" then queue.clear; puts "The queue is now empty."
+    when "find" then queue.finder
     end
   end
 end

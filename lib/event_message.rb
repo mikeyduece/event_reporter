@@ -58,4 +58,12 @@ module EventMessages
   def loaded
     puts "File loaded."
   end
+
+  def queue_start
+    puts "Your file is loaded, what would you like to do? (count, clear, find)".bold
+  end
+
+  def print_count(count)
+    puts "There are #{count} records currently in the queue".bold
+  end
 end
