@@ -40,7 +40,7 @@ class EventReporter
     when "print"      then print_help
     else help_commands
     end
-    start
+    start_commands(first_command)
   end
 
   def start
@@ -90,8 +90,9 @@ class EventReporter
     if @loaded == false
       puts "Please load file before searching the queue."
       start
-  elsif @loaded == true
+    elsif @loaded == true
       search = queue.finder(second_command, third_command)
+      require "pry"; binding.pry
       search_results(search.count)
     end
   end
@@ -100,18 +101,17 @@ class EventReporter
     user_input = gets.chomp
     commands.change_commands(user_input)
     set_commands
-    # require "pry"; binding.pry
   end
 
   def set_commands
     @first_command = commands.first_command
-    @second_command = string_format(commands.second_command) if commands.second_command != nil
+    @second_command = commands.second_command if commands.second_command != nil
     @third_command = commands.third_command if commands.third_command != nil
   end
 
-  def string_format(string)
-    string.gsub(/\s+/, "_").downcase
-  end
+  # def string_format(string)
+  #   string.gsub!(/\s+/, "_").downcase
+  # end
 end
 start = EventReporter.new
 start.start

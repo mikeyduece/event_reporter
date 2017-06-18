@@ -22,9 +22,18 @@ class Commands
 
   def change_commands(command)
     commands = command.split
+    long_entry(commands)
     @first_command = commands[0] if commands[0] != nil
     @second_command = commands[1] if commands[1] != nil
     @third_command = commands[2] if commands[2] != nil
+  end
+
+  def long_entry(commands)
+    if commands.count > 3
+      att = commands[1..2].join('_')
+      commands.slice!(1..2)
+      commands.insert(1,att)
+    end
   end
 
 end
