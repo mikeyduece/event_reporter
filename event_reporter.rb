@@ -79,19 +79,22 @@ class EventReporter
     case command
     when "count" then print_count(queue.count)
     when "clear" then queue.clear; puts "The queue is now empty."
+    when "print" then printer
     end
+    start
   end
 
   def find(second_command, third_command)
-    # if second_command == nil || third_command == nil
-    #     wrong_number_of_args
-    #     start
-    if @loaded == false
-      puts "Please load file before searching the queue."
+    if second_command == nil || third_command == nil
+        wrong_number_of_args
+        start
+    elsif @loaded == false
+      puts "Please load file before searching the queue.".red.bold
       start
     elsif @loaded == true
       search = queue.finder(second_command, third_command)
       search_results(search.count)
+      start
     end
   end
 
@@ -107,9 +110,27 @@ class EventReporter
     @third_command = commands.third_command if commands.third_command != nil
   end
 
-  # def string_format(string)
-  #   string.gsub!(/\s+/, "_").downcase
-  # end
+  def printer
+    if queue.count == 0
+      puts "Please load file and search for something to print."
+    else
+      format = '%-10s %-10s %-30s %-7s %-15s %s'
+      puts format % ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE','ADDRESS','PHONE']
+        queue.queued.map do |attendee|
+          last = attendee.last_name.capitalize
+          first = attendee.first_name.capitalize
+          email = attendee.email
+          zip = attendee.zipcode
+          city = attendee.city
+          state = attendee.state
+          addy = attendee.street
+          phone = attendee.phone
+          puts format % [last,first,email,zip,city,state,addy,phone]
+        end
+    end
+    start
+  end
+
 end
 start = EventReporter.new
 start.start

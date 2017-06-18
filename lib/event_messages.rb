@@ -44,8 +44,8 @@ module EventMessages
   end
 
   def table_header
-    puts "LAST NAME"+" "*5+"FIRST NAME"+" "*5+"EMAIL"+" "*5+"ZIPCODE"+" "*5+
-    "CITY"+" "*5+"STATE"+" "*5+"ADDRESS"+" "*5+"PHONE".cyan.bold
+    # puts ("LAST NAME"+" "*5+"FIRST NAME"+" "*5+"EMAIL"+" "*5+"ZIPCODE"+" "*5+
+    # "CITY"+" "*5+"STATE"+" "*5+"ADDRESS"+" "*5+"PHONE").white.bold.underline
   end
 
   def help_commands
@@ -81,4 +81,5 @@ module EventMessages
       puts "Wrong number of arguments. Given: 0 Expecting: 2"
     end
   end
+
 end
