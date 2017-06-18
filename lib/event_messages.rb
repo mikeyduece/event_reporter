@@ -1,16 +1,17 @@
 require 'colorize'
 module EventMessages
   def queue_help(command)
+    error_message if command == nil
     case command
     when "count" then puts "Displays amount of current entries in queue.".white.bold
     when "clear" then puts "Clears the current queue of all entries.".white.bold
     when "print" then print_help
     end
-    # puts "The queue holds the stored search results form previous searches.
-    # It is not cleared until the user enters the queue clear command or starts
-    # a new seach.
-    #   The queue related commands are: queue count, queue clear, queue print,
-    #   queue print_by<attribute>, and queue print_by<filename.csv>"
+  end
+
+  def error_message
+    puts "Please enter criteria you would like help with.
+    i.e. 'help queue count'.".pink
   end
 
   def attribute_help
@@ -35,7 +36,7 @@ module EventMessages
 
   def print_help
     puts "Print out a tab-delimited data table with a header row following this format:"
-    puts "LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE  DISTRICT".bold.underline
+    puts "LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE".bold.underline
   end
 
   def welcome

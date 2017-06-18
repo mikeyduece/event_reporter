@@ -3,9 +3,9 @@ class Commands
   attr_accessor :change_commands
 
   def initialize
-    @first_command = ""
+    @first_command  = ""
     @second_command = ""
-    @third_command = ""
+    @third_command  = ""
   end
 
   def first_command

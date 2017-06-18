@@ -40,7 +40,7 @@ class EventReporter
     when "print"      then print_help
     else help_commands
     end
-    start_commands(first_command)
+    start
   end
 
   def start
