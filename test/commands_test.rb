@@ -16,7 +16,7 @@ class CommandsTest < Minitest::Test
   def test_can_change_join_second_entry_into_one
     q.loader
     var      = ("find first name John").split
-    actual   = com.long_entry(var)
+    actual   = com.long_second_entry(var)
     expected = ["find","first_name","John"]
     assert_equal expected, actual
   end

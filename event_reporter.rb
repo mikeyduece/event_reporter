@@ -80,7 +80,7 @@ class EventReporter
     when "count"    then print_count(queue.count)
     when "clear"    then queue.clear; puts "The queue is now empty."
     when "print"    then printer
-    when "print by" then
+    when "print by" then printer(third_command)
     end
     start
   end
@@ -111,14 +111,15 @@ class EventReporter
     @third_command = commands.third_command if commands.third_command != nil
   end
 
-  def printer
+  def printer(command=nil)
     if queue.count == 0
       puts "Please load file and search for something to print."
     else
       format = '%-10s %-10s %-30s %-7s %-15s %-6s %-28s %s'
       puts format % ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE',
         'ADDRESS','PHONE']
-        queue.queued.map do |attendee|
+        sorted = queue.queue.sort_by(&:command)
+        sorted.map do |attendee|
           last = attendee.last_name.capitalize
           first = attendee.first_name.capitalize
           email = attendee.email
