@@ -79,7 +79,7 @@ class EventReporter
     case command
     when "count"    then print_count(queue.count)
     when "clear"    then queue.clear; puts "The queue is now empty."
-    when "print by" then printer(third_command)
+    when "print_by" then printer(third_command)
     when "print"    then printer
     end
     start
@@ -119,7 +119,7 @@ class EventReporter
       puts format % table_header
 
         if third_command != nil
-          sorted = queue.queued.sort_by {|x| x.third_command}
+          sorted = queue.queued.sort_by(&:last_name)
           sorted.map do |attendee|
             last = attendee.last_name.capitalize
             first = attendee.first_name.capitalize
