@@ -77,9 +77,10 @@ class EventReporter
 
   def queue_commands(command,third_command=nil)
     case command
-    when "count" then print_count(queue.count)
-    when "clear" then queue.clear; puts "The queue is now empty."
-    when "print" then printer
+    when "count"    then print_count(queue.count)
+    when "clear"    then queue.clear; puts "The queue is now empty."
+    when "print"    then printer
+    when "print by" then
     end
     start
   end

@@ -22,14 +22,14 @@ class Queue
   def finder(attribute, criteria)
     clear
     criteria.delete("-") if attribute == "phone"
-    @queued << all_attendees.find_all do |attendee|
+    queued << all_attendees.find_all do |attendee|
       attendee.send(attribute.to_sym).to_s.downcase == criteria.to_s.downcase
     end
-    return @queued.flatten!
+    queued.flatten!
   end
 
   def clear
-    @queued = []
+    queued = []
   end
 
   def legislators_by_zipcode(zipcode)
