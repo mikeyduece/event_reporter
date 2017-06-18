@@ -59,7 +59,7 @@ class EventReporter
     when "help"  then help(second_command)
     when "load"  then load_csv
     when "find"  then find(second_command,third_command)
-    when "print" then queue.printer
+    #when "print" then queue.printer
       start
     end
   end
@@ -79,8 +79,8 @@ class EventReporter
     case command
     when "count"    then print_count(queue.count)
     when "clear"    then queue.clear; puts "The queue is now empty."
-    when "print"    then printer
     when "print by" then printer(third_command)
+    when "print"    then printer
     end
     start
   end
@@ -100,7 +100,7 @@ class EventReporter
   end
 
   def get_input
-    user_input = gets.chomp
+    user_input = gets.chomp.downcase
     commands.change_commands(user_input)
     set_commands
   end
@@ -111,24 +111,38 @@ class EventReporter
     @third_command = commands.third_command if commands.third_command != nil
   end
 
-  def printer(command=nil)
+  def printer(third_command=nil)
     if queue.count == 0
       puts "Please load file and search for something to print."
     else
       format = '%-10s %-10s %-30s %-7s %-15s %-6s %-28s %s'
-      puts format % ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE',
-        'ADDRESS','PHONE']
-        sorted = queue.queue.sort_by(&:command)
-        sorted.map do |attendee|
-          last = attendee.last_name.capitalize
-          first = attendee.first_name.capitalize
-          email = attendee.email
-          zip = attendee.zipcode
-          city = attendee.city
-          state = attendee.state
-          addy = attendee.street
-          phone = attendee.phone
-          puts format % [last,first,email,zip,city,state,addy,phone]
+      puts format % table_header
+
+        if third_command != nil
+          sorted = queue.queued.sort_by {|x| x.third_command}
+          sorted.map do |attendee|
+            last = attendee.last_name.capitalize
+            first = attendee.first_name.capitalize
+            email = attendee.email
+            zip = attendee.zipcode
+            city = attendee.city
+            state = attendee.state
+            addy = attendee.street
+            phone = attendee.phone
+            puts format % [last,first,email,zip,city,state,addy,phone]
+          end
+        else
+          queue.queued.map do |attendee|
+            last = attendee.last_name.capitalize
+            first = attendee.first_name.capitalize
+            email = attendee.email
+            zip = attendee.zipcode
+            city = attendee.city
+            state = attendee.state
+            addy = attendee.street
+            phone = attendee.phone
+            puts format % [last,first,email,zip,city,state,addy,phone]
+          end
         end
     end
     start

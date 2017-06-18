@@ -44,8 +44,23 @@ module EventMessages
   end
 
   def table_header
+    ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE','ADDRESS','PHONE']
     # puts ("LAST NAME"+" "*5+"FIRST NAME"+" "*5+"EMAIL"+" "*5+"ZIPCODE"+" "*5+
     # "CITY"+" "*5+"STATE"+" "*5+"ADDRESS"+" "*5+"PHONE").white.bold.underline
+  end
+
+  def print_table
+    queue.queued.map do |attendee|
+      last = attendee.last_name.capitalize
+      first = attendee.first_name.capitalize
+      email = attendee.email
+      zip = attendee.zipcode
+      city = attendee.city
+      state = attendee.state
+      addy = attendee.street
+      phone = attendee.phone
+      puts format % [last,first,email,zip,city,state,addy,phone]
+    end
   end
 
   def help_commands
