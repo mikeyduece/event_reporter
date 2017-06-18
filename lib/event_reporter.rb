@@ -58,7 +58,7 @@ class EventReporter
     when "queue" then queue_commands(second_command, third_command)
     when "help"  then help(second_command)
     when "load"  then load_csv
-    when "find"  then queue.finder(second_command,third_command)
+    when "find"  then find(second_command,third_command)
     when "print" then queue.printer
       start
     end
@@ -79,7 +79,6 @@ class EventReporter
     case command
     when "count" then print_count(queue.count)
     when "clear" then queue.clear; puts "The queue is now empty."
-    when "find"  then find(second_command, third_command)
     end
   end
 
@@ -92,7 +91,6 @@ class EventReporter
       start
     elsif @loaded == true
       search = queue.finder(second_command, third_command)
-      require "pry"; binding.pry
       search_results(search.count)
     end
   end
