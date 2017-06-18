@@ -114,8 +114,9 @@ class EventReporter
     if queue.count == 0
       puts "Please load file and search for something to print."
     else
-      format = '%-10s %-10s %-30s %-7s %-15s %s'
-      puts format % ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE','ADDRESS','PHONE']
+      format = '%-10s %-10s %-30s %-7s %-15s %-6s %-28s %s'
+      puts format % ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE',
+        'ADDRESS','PHONE']
         queue.queued.map do |attendee|
           last = attendee.last_name.capitalize
           first = attendee.first_name.capitalize
