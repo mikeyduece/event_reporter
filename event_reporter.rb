@@ -70,9 +70,14 @@ class EventReporter
   end
 
   def load_csv
-    second_command ||= "./data/full_event_attendees.csv"
-    attendees.open_file(second_command)
-    require "pry"; binding.pry
+    filename = @second_command
+    if File.file?(filename)
+      filename
+    else
+      filename = "./data/full_event_attendees.csv"
+    end
+    # filename ||= "./data/full_event_attendees.csv"
+    attendees.open_file(filename)
     loaded
     @loaded = true
     start
@@ -90,6 +95,7 @@ class EventReporter
   end
 
   def find(second_command, third_command)
+    queue.clear
     if second_command == nil || third_command == nil
         wrong_number_of_args
         start
