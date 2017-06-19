@@ -46,6 +46,20 @@ class Queue
     filename = "./data/full_event_attendees.csv"
     attendees.open_file(filename)
   end
+
+  def save_to(filename)
+    Dir.mkdir("output") unless Dir.exists? "output"
+    file = "output/#{filename}.html"
+
+    headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
+               :city,:state,:zipcode]
+    CSV.open("file","wb") do |csv|
+      csv << headers
+      queued.each do |att|
+        csv << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
+                att.phone, att.street, att.city, att.state, att.zipcode]
+      end
+  end
   # def district
   #   if count < 10 && !@queued.empty?
   #     @queued.each do |attendee|
