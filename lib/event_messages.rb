@@ -97,5 +97,13 @@ module EventMessages
     end
   end
 
+  def save_worked
+    puts "Your file was saved."
+  end
+
+  def save_fail
+    puts "Your file was not saved, please try again."
+  end
+
 
 end

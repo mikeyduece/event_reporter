@@ -48,8 +48,8 @@ class Queue
   end
 
   def save_to(filename)
-    Dir.mkdir("output") unless Dir.exists? "output"
-    file = "output/#{filename}.html"
+    Dir.mkdir("csv_output") unless Dir.exists? "csv_output"
+    file = "csv_output/#{filename}.csv"
 
     headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
                :city,:state,:zipcode]
@@ -59,6 +59,7 @@ class Queue
         csv << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
                 att.phone, att.street, att.city, att.state, att.zipcode]
       end
+    end
   end
   # def district
   #   if count < 10 && !@queued.empty?

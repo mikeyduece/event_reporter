@@ -92,6 +92,11 @@ class EventReporter
       start
     else
       queue.save_to(third_command)
+      if File.exist?("csv_output/#{third_command}")
+        save_worked
+      else
+        save_fail
+      end
     end
   end
 
