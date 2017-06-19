@@ -2,15 +2,17 @@ require 'colorize'
 require './lib/queue'
 require './lib/event_messages'
 require './lib/commands'
+require './lib/attendee_repo'
 
 class EventReporter
   include EventMessages
 
-  attr_reader :queue, :start, :commands
+  attr_reader :queue, :start, :commands, :attendees
 
   def initialize
     @queue          = Queue.new(self)
     @commands       = Commands.new
+    @attendees      = AttendeeRepo.new
     @first_command  = nil
     @second_command = nil
     @third_command  = nil
@@ -68,7 +70,8 @@ class EventReporter
   end
 
   def load_csv
-    queue.loader(second_command)
+    second_command ||= "./data/full_event_attendees.csv"
+    attendees.open_file(second_command)
     loaded
     @loaded = true
     start

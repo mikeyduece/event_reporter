@@ -23,6 +23,7 @@ class Queue
   def finder(attribute, criteria)
     clear
     criteria.delete("-") if attribute == "phone"
+    require "pry"; binding.pry
     queued << all_attendees.find_all do |attendee|
       attendee.send(attribute.to_sym).to_s.downcase == criteria.to_s.downcase
     end
@@ -42,19 +43,13 @@ class Queue
     legislator_names.join(", ")
   end
 
-
-  def loader
-    filename ||= "./data/full_event_attendees.csv"
-    attendees.open_file(filename)
-  end
-
   def save_to(filename)
     Dir.mkdir("csv_output") unless Dir.exists? "csv_output"
-    file = "csv_output/#{filename}.csv"
+    file = "csv_output/#{filename}"
 
     headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
                :city,:state,:zipcode]
-    CSV.open("#{file}","wb") do |csv|
+    File.open("#{file}","wb") do |csv|
       csv << headers
       queued.each do |att|
         csv << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
