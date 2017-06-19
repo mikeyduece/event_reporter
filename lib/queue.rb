@@ -29,7 +29,7 @@ class Queue
   end
 
   def clear
-    queued = []
+    @queued = []
   end
 
   def legislators_by_zipcode(zipcode)
