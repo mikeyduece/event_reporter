@@ -54,7 +54,6 @@ class Queue
         csv << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
                 att.phone, att.street, att.city, att.state, att.zipcode]
       end
-      require "pry"; binding.pry
     end
   end
   # def district
