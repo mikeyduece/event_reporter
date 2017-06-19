@@ -4,7 +4,7 @@ class AttendeeRepo
 
   attr_reader :all, :find, :open_file
 
-  def initialize
+  def initialize(parent=nil)
     @all_attendees = []
   end
 

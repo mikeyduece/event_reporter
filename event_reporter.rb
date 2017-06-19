@@ -12,7 +12,7 @@ class EventReporter
   def initialize
     @queue          = Queue.new(self)
     @commands       = Commands.new
-    @attendees      = AttendeeRepo.new
+    @attendees      = AttendeeRepo.new(self)
     @first_command  = nil
     @second_command = nil
     @third_command  = nil
@@ -70,8 +70,9 @@ class EventReporter
   end
 
   def load_csv
-    second_command ||= "./data/full_event_attendees.csv"
-    attendees.open_file(second_command)
+    @second_command ||= "./data/full_event_attendees.csv"
+    attendees.open_file(@second_command)
+    require "pry"; binding.pry
     loaded
     @loaded = true
     start

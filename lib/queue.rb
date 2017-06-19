@@ -23,8 +23,7 @@ class Queue
   def finder(attribute, criteria)
     clear
     criteria.delete("-") if attribute == "phone"
-    require "pry"; binding.pry
-    queued << all_attendees.find_all do |attendee|
+    @queued << er.attendees.all.find_all do |attendee|
       attendee.send(attribute.to_sym).to_s.downcase == criteria.to_s.downcase
     end
     queued.flatten!
@@ -49,7 +48,7 @@ class Queue
 
     headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
                :city,:state,:zipcode]
-    File.open("#{file}","wb") do |csv|
+    CSV.open("#{file}","wb") do |csv|
       csv << headers
       queued.each do |att|
         csv << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
