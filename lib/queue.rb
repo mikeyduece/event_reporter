@@ -50,10 +50,11 @@ class Queue
                :city,:state,:zipcode]
     CSV.open("#{file}","w") do |csv|
       csv << headers
-      queued.each do |att|
+      queued.map do |att|
         csv << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
                 att.phone, att.street, att.city, att.state, att.zipcode]
       end
+      require "pry"; binding.pry
     end
   end
   # def district
