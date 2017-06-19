@@ -70,8 +70,8 @@ class EventReporter
   end
 
   def load_csv
-    @second_command ||= "./data/full_event_attendees.csv"
-    attendees.open_file(@second_command)
+    second_command ||= "./data/full_event_attendees.csv"
+    attendees.open_file(second_command)
     require "pry"; binding.pry
     loaded
     @loaded = true
