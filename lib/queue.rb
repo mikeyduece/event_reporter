@@ -1,3 +1,4 @@
+require 'csv'
 require './lib/attendee_repo'
 require 'sunlight/congress'
 
@@ -53,7 +54,7 @@ class Queue
 
     headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
                :city,:state,:zipcode]
-    CSV.open("file","wb") do |csv|
+    CSV.open("#{file}","wb") do |csv|
       csv << headers
       queued.each do |att|
         csv << [att.id, att.reg_date, att.first_name, att.last_name, att.email,

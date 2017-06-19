@@ -81,23 +81,9 @@ class EventReporter
     when "count"    then print_count(queue.count)
     when "print_by" then printer(third_command)
     when "print"    then printer
-    when "save_to"  then save_to(third_command)
+    when "save_to"  then queue.save_to(third_command)
     end
     start
-  end
-
-  def save_to(third_command)
-    if third_command == nil
-      puts "Please enter a name for your file you wish to save."
-      start
-    else
-      queue.save_to(third_command)
-      if File.exist?("csv_output/#{third_command}")
-        save_worked
-      else
-        save_fail
-      end
-    end
   end
 
   def find(second_command, third_command)
