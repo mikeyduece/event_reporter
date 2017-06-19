@@ -59,7 +59,6 @@ class EventReporter
     when "help"  then help(second_command)
     when "load"  then load_csv
     when "find"  then find(second_command,third_command)
-    #when "print" then queue.printer
       start
     end
   end
@@ -69,7 +68,7 @@ class EventReporter
   end
 
   def load_csv
-    queue.loader
+    queue.loader(second_command)
     loaded
     @loaded = true
     start

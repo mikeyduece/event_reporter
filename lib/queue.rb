@@ -44,7 +44,7 @@ class Queue
 
 
   def loader
-    filename = "./data/full_event_attendees.csv"
+    filename ||= "./data/full_event_attendees.csv"
     attendees.open_file(filename)
   end
 
