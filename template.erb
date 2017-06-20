@@ -1,15 +1,15 @@
 <table>
   <thead>
     <tr>
-      <% @array.first.attributes.each do |attr| %>
+      <% headers.each do |attr| %>
         <th><%= attr.titlelize %></th>
       <% end %>
     </tr>
   </thead>
   <tbody>
-    <% @array.each do |x| %>
+    <% @queued.each do |x| %>
       <tr>
-        <% x.attributes.each do |attr| %>
+        <% x.each do |attr| %>
           <td><%= x[attr] %></td>
         <% end %>
       </tr>

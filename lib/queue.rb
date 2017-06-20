@@ -1,4 +1,5 @@
 require 'csv'
+require 'erb'
 require './lib/attendee_repo'
 # require 'sunlight/congress'
 
@@ -7,17 +8,12 @@ class Queue
   attr_reader :attendees, :all_attendees, :er, :queued
 
   def initialize(parent=nil)
-    @attendees = AttendeeRepo.new
     @er        = parent
     @queued    = []
   end
 
   def count
     @queued.count
-  end
-
-  def all_attendees
-    attendees.all
   end
 
   def finder(attribute, criteria)
@@ -43,22 +39,30 @@ class Queue
   end
 
   def save_to(filename)
-    save_csv(filename)
+    if er.third_command.include?(".csv")
+      save_csv(filename)
+    elsif er.third_command.include?(".html")
+      save_html(filename)
+    end
   end
 
   def save_html(filename)
-    template_letter = File.read "form_letter.erb"
+    template_letter = File.read "template.erb"
     erb_letter = ERB.new template_letter
     form_letter = erb_letter.result(binding)
-    
+
     Dir.mkdir("html") unless Dir.exists? "html"
     file = "html/#{filename}"
 
     headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
                :city,:state,:zipcode]
-    File.open(filename,"w") do |file|
-      file.puts form_letter
+    File.open(file,"w") do |file|
+      queued.map do |att|
+        file << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
+                att.phone, att.street, att.city, att.state, att.zipcode]
+      end
     end
+
   end
 
   def save_csv(filename)
