@@ -76,7 +76,6 @@ class EventReporter
     else
       filename = "./data/full_event_attendees.csv"
     end
-    # filename ||= "./data/full_event_attendees.csv"
     attendees.open_file(filename)
     loaded
     @loaded = true

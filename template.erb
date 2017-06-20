@@ -2,16 +2,14 @@
   <thead>
     <tr>
       <% headers.each do |attr| %>
-        <th><%= attr.titlelize %></th>
+        <th><%= attr.capitalize %></th>
       <% end %>
     </tr>
   </thead>
   <tbody>
-    <% @queued.each do |x| %>
+    <% @queued.each do |x,att| %>
       <tr>
-        <% x.each do |attr| %>
-          <td><%= x[attr] %></td>
-        <% end %>
+          <td><%= x.send[att.to_sym.capitalize] %></td>
       </tr>
     <% end %>
   </tbody>
