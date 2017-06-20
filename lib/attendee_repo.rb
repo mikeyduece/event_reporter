@@ -14,7 +14,6 @@ class AttendeeRepo
       id = row[0]
       zipcode = clean_zipcode(row[:zipcode])
       homephone = clean_phone(row[:homephone])
-      require "pry"; binding.pry
     end
   end
 

@@ -1,9 +1,9 @@
 require 'csv'
 require './lib/attendee_repo'
-require 'sunlight/congress'
+# require 'sunlight/congress'
 
 class Queue
-  Sunlight::Congress.api_key = "e179a6973728c4dd3fb1204283aaccb5"
+  # Sunlight::Congress.api_key = "e179a6973728c4dd3fb1204283aaccb5"
   attr_reader :attendees, :all_attendees, :er, :queued
 
   def initialize(parent=nil)
@@ -43,6 +43,25 @@ class Queue
   end
 
   def save_to(filename)
+    save_csv(filename)
+  end
+
+  def save_html(filename)
+    template_letter = File.read "form_letter.erb"
+    erb_letter = ERB.new template_letter
+    form_letter = erb_letter.result(binding)
+    
+    Dir.mkdir("html") unless Dir.exists? "html"
+    file = "html/#{filename}"
+
+    headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
+               :city,:state,:zipcode]
+    File.open(filename,"w") do |file|
+      file.puts form_letter
+    end
+  end
+
+  def save_csv(filename)
     Dir.mkdir("csv_output") unless Dir.exists? "csv_output"
     file = "csv_output/#{filename}"
 

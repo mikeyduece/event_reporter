@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <% @array.first.attributes.each do |attr| %>
+        <th><%= attr.titlelize %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @array.each do |x| %>
+      <tr>
+        <% x.attributes.each do |attr| %>
+          <td><%= x[attr] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
