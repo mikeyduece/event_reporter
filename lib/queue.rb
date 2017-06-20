@@ -56,25 +56,5 @@ class Queue
       end
     end
   end
-  # def district
-  #   if count < 10 && !@queued.empty?
-  #     @queued.each do |attendee|
-  #       first       = attendee.first_name.capitalize
-  #       last        = attendee.last_name.capitalize
-  #       name        = "#{first} #{last}"
-  #       zipcode     = attendee.zipcode
-  #       legislators = legislators_by_zipcode(zipcode)
-  #       puts "#{name} #{zipcode} #{legislators}"
-  #     end
-  #   else
-  #     nil
-  #   end
-  # end
-  # def print
-  #   @queued.each do |attendee|
-  #
-  #
-  #
-  # end
 
 end

@@ -11,7 +11,7 @@ module EventMessages
 
   def error_message
     puts "Please enter criteria you would like help with.
-    i.e. 'help queue count'.".pink
+    i.e. 'help queue count'.".magenta
   end
 
   def attribute_help
@@ -45,8 +45,6 @@ module EventMessages
 
   def table_header
     ['LAST NAME','FIRST NAME','EMAIL','ZIPCODE','CITY','STATE','ADDRESS','PHONE']
-    # puts ("LAST NAME"+" "*5+"FIRST NAME"+" "*5+"EMAIL"+" "*5+"ZIPCODE"+" "*5+
-    # "CITY"+" "*5+"STATE"+" "*5+"ADDRESS"+" "*5+"PHONE").white.bold.underline
   end
 
   def print_table

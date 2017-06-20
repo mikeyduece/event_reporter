@@ -13,11 +13,17 @@ class AttendeeRepo
       @all_attendees << Attendee.new(row)
       id = row[0]
       zipcode = clean_zipcode(row[:zipcode])
+      homephone = clean_phone(row[:homephone])
+      require "pry"; binding.pry
     end
   end
 
   def clean_zipcode(zipcode)
     zipcode.to_s.rjust(5,"0")[0..4]
+  end
+
+  def clean_phone(homephone)
+    homephone.to_s.delete("-")[0..9]
   end
 
   def all
