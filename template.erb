@@ -1,10 +1,8 @@
 <table>
   <thead>
-    <tr>
-      <% headers.each do |attr| %>
-        <th><%= attr.capitalize %></th>
-      <% end %>
-    </tr>
+    <th>Id</th><th>reg_date</th><th>first_name</th><th>last_name</th>
+    <th>email</th><th>phone</th><th>street</th><th>city</th><th>state</th>
+    <th>zipcode</th>
   </thead>
   <% @queued.each do |attendee| %>
     <tr>

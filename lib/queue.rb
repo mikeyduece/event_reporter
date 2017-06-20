@@ -49,20 +49,20 @@ class Queue
   def save_html(filename)
     template_letter = File.read "template.erb"
     erb_letter = ERB.new template_letter
+    form_letter = erb_letter.result(binding)
 
     Dir.mkdir("html") unless Dir.exists? "html"
     file = "html/#{filename}"
 
-    headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
-               :city,:state,:zipcode]
     File.open(file,"w") do |file|
-      queued.map do |att|
-        file << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
-                att.phone, att.street, att.city, att.state, att.zipcode]
-      end
-      form_letter = erb_letter.result(binding)
+      @headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
+        :city,:state,:zipcode]
+      # queued.map do |att|
+      #   file << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
+      #           att.phone, att.street, att.city, att.state, att.zipcode]
+      # end
+      file.puts form_letter
     end
-
   end
 
   def save_csv(filename)
