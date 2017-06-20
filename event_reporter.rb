@@ -61,6 +61,7 @@ class EventReporter
     when "help"  then help(second_command)
     when "load"  then load_csv
     when "find"  then find(second_command,third_command)
+    else
       start
     end
   end

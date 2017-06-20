@@ -6,11 +6,12 @@
       <% end %>
     </tr>
   </thead>
-  <tbody>
-    <% @queued.each do |x,att| %>
-      <tr>
-          <td><%= x.send[att.to_sym.capitalize] %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% @queued.each do |attendee| %>
+    <tr>
+      <td><%= attendee.id%></td><td><%= attendee.reg_date%></td><td><%= attendee.first_name%></td>
+      <td><%= attendee.last_name%></td><td><%= attendee.email%></td><td><%= attendee.phone%></td>
+      <td><%= attendee.street%></td><td><%= attendee.city%></td><td><%= attendee.state%></td>
+      <td><%= attendee.zipcode%></td>
+    </tr>
+  <% end %>
 </table>
