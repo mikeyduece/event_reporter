@@ -138,7 +138,7 @@ class EventReporter
             city = attendee.city
             state = attendee.state
             addy = attendee.street
-            phone = attendee.phone
+            phone = format_phone(attendee.phone)
             puts format % [last,first,email,zip,city,state,addy,phone]
           end
         else
@@ -150,7 +150,7 @@ class EventReporter
             city = attendee.city
             state = attendee.state
             addy = attendee.street
-            phone = attendee.phone
+            phone = format_phone(attendee.phone)
             puts format % [last,first,email,zip,city,state,addy,phone]
           end
         end

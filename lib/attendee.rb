@@ -12,6 +12,6 @@ class Attendee
     @street = params[:street]
     @city = params[:city]
     @state = params[:state]
-    @zipcode = params[:zipcode].to_i
+    @zipcode = params[:zipcode]
   end
 end

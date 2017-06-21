@@ -20,7 +20,6 @@ class Queue
 
   def finder(attribute, criteria)
     clear
-    criteria.delete("-") if attribute == "phone"
     @queued << er.attendees.all.find_all do |attendee|
       attendee.send(attribute.to_sym).to_s.downcase == criteria.to_s.downcase
     end
@@ -69,10 +68,11 @@ class Queue
     format = '%-10s %-10s %-35s %-7s %-15s %-6s %-28s %s'
 
     File.open("#{file}","w") do |file|
-      sprintf % table_header
+      puts format % table_header
       queued.map do |att|
-        sprintf % file << [att.last_name, att.first_name, att.email,
-                att.phone, att.street, att.city, att.state, att.zipcode]
+        file = [att.first_name, att.last_name, att.email, att.zipcode,
+                att.street, att.city, att.state, att.phone,]
+        puts format % file
       end
     end
 

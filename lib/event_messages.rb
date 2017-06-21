@@ -67,11 +67,11 @@ module EventMessages
   end
 
   def print_count(count)
-    puts "There are #{count} records currently in the queue".bold
+    puts "There are #{count} records currently in the queue".bold.magenta
   end
 
   def search_results(search)
-    puts "There are #{search} matches."
+    puts "There are #{search} matches.".white
   end
 
   def wrong_number_of_args
@@ -88,6 +88,11 @@ module EventMessages
 
   def save_fail
     puts "Your file was not saved, please try again."
+  end
+
+  def format_phone(phone)
+    phone.gsub(/^(\d{0})(\d+)(\d{3})(\d+)(\d{6})$/,'\1-\2-\3-\4-\5')
+
   end
 
 
