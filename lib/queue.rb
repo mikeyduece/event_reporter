@@ -1,6 +1,8 @@
 require 'csv'
 require 'json'
 require 'erb'
+require 'gyoku'
+require 'yaml'
 require './lib/attendee_repo'
 require './lib/event_messages'
 
@@ -47,6 +49,10 @@ class Queue
       save_txt(filename)
     elsif er.third_command.include?(".json")
       save_json(filename)
+    elsif er.third_command.include?(".xml")
+      save_xml(filename)
+    elsif er.third_command.include?(".yml")
+      save_yml(filename)
     end
   end
 
@@ -103,10 +109,39 @@ class Queue
 
     File.open("#{file}","w") do |file|
       queued.map do |att|
-        temp_hash = {last_name: att.last_name.capitalize, first_name: att.first_name.capitalize,
-                     email: att.email, zipcode: att.zipcode, city: att.city.split.map(&:capitalize)*' ',
-                     street: att.street, state: att.state, phone: att.phone}
+        temp_hash = {
+        last_name: att.last_name.capitalize, first_name: att.first_name.capitalize,
+        email: att.email, zipcode: att.zipcode, city: att.city.split.map(&:capitalize)*' ',
+        street: att.street, state: att.state, phone: att.phone}
         file.puts temp_hash.to_json
+      end
+    end
+  end
+
+  def save_xml(filename)
+    Dir.mkdir("xml") unless Dir.exists? "xml"
+    file = "xml/#{filename}"
+
+    File.open("#{file}","w") do |file|
+      queued.map do |att|
+        temp_hash={last_name: att.last_name.capitalize, first_name: att.first_name.capitalize,
+        email: att.email, zipcode: att.zipcode, city: att.city.split.map(&:capitalize)*' ',
+        street: att.street, state: att.state, phone: att.phone}
+        file.puts Gyoku.xml(temp_hash)
+      end
+    end
+  end
+
+  def save_yml(filename)
+    Dir.mkdir("yml") unless Dir.exists? "yml"
+    file = "yml/#{filename}"
+
+    File.open("#{file}","w") do |file|
+      queued.map do |att|
+        temp_hash={last_name: att.last_name.capitalize, first_name: att.first_name.capitalize,
+        email: att.email, zipcode: att.zipcode, city: att.city.split.map(&:capitalize)*' ',
+        street: att.street, state: att.state, phone: att.phone}
+        file.puts temp_hash.to_yaml
       end
     end
   end
