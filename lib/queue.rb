@@ -55,12 +55,6 @@ class Queue
     file = "html/#{filename}"
 
     File.open(file,"w") do |file|
-      @headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
-        :city,:state,:zipcode]
-      # queued.map do |att|
-      #   file << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
-      #           att.phone, att.street, att.city, att.state, att.zipcode]
-      # end
       file.puts form_letter
     end
   end
