@@ -65,14 +65,16 @@ class Queue
   def save_txt(filename)
     Dir.mkdir("txt") unless Dir.exists? "txt"
     file = "txt/#{filename}"
-    format = '%-10s %-10s %-35s %-7s %-15s %-6s %-28s %s'
 
     File.open("#{file}","w") do |file|
-      puts format % table_header
+      format = '%-10s %-10s %-35s %-7s %-15s %-6s %-28s %s'
+      file.puts format % table_header
       queued.map do |att|
-        file = [att.first_name, att.last_name, att.email, att.zipcode,
-                att.street, att.city, att.state, att.phone,]
-        puts format % file
+        attributes = [att.last_name.capitalize, att.first_name.capitalize,
+                      att.email, att.zipcode,
+                      att.city.split.map(&:capitalize)*' ', att.street,
+                      att.state, att.phone,]
+        file.puts format % attributes
       end
     end
 
@@ -88,7 +90,23 @@ class Queue
       csv << headers
       queued.map do |att|
         csv << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
-                att.phone, att.street, att.city, att.state, att.zipcode]
+                format_phone(att.phone), att.street, att.city, att.state,
+                att.zipcode]
+      end
+    end
+  end
+
+  def save_json(filename)
+    Dir.mkdir("json") unless Dir.exists? "json"
+    file = "json/#{filename}"
+
+    File.open("#{file}","w") do |file|
+      queued.map do |att|
+        # attributes = [att.last_name.capitalize, att.first_name.capitalize,
+        #               att.email, att.zipcode,
+        #               att.city.split.map(&:capitalize)*' ', att.street,
+        #               att.state, att.phone,]
+        file.puts
       end
     end
   end
