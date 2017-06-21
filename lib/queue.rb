@@ -43,6 +43,8 @@ class Queue
       save_csv(filename)
     elsif er.third_command.include?(".html")
       save_html(filename)
+    elsif er.third_command.include?(".txt")
+      save_txt(filename)
     end
   end
 
@@ -57,6 +59,22 @@ class Queue
     File.open(file,"w") do |file|
       file.puts form_letter
     end
+  end
+
+  def save_txt(filename)
+    Dir.mkdir("txt") unless Dir.exists? "txt"
+    file = "txt/#{filename}"
+
+    headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
+               :city,:state,:zipcode]
+    File.open("#{file}","w") do |file|
+      file << headers
+      queued.map do |att|
+        file << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
+                att.phone, att.street, att.city, att.state, att.zipcode]
+      end
+    end
+
   end
 
   def save_csv(filename)
