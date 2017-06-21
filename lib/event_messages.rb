@@ -91,8 +91,7 @@ module EventMessages
   end
 
   def format_phone(phone)
-    phone.gsub(/^(\d{0})(\d+)(\d{3})(\d+)(\d{6})$/,'\1-\2-\3-\4-\5')
-
+    phone.insert(0,'(').insert(4,')').insert(5,' ').insert(9,'-')
   end
 
 
