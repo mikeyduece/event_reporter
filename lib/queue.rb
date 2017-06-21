@@ -1,12 +1,11 @@
 require 'csv'
+require 'json'
 require 'erb'
 require './lib/attendee_repo'
 require './lib/event_messages'
-# require 'sunlight/congress'
 
 class Queue
   include EventMessages
-  # Sunlight::Congress.api_key = "e179a6973728c4dd3fb1204283aaccb5"
   attr_reader :attendees, :all_attendees, :er, :queued
 
   def initialize(parent=nil)
@@ -46,6 +45,8 @@ class Queue
       save_html(filename)
     elsif er.third_command.include?(".txt")
       save_txt(filename)
+    elsif er.third_command.include?(".json")
+      save_json(filename)
     end
   end
 
@@ -102,11 +103,10 @@ class Queue
 
     File.open("#{file}","w") do |file|
       queued.map do |att|
-        # attributes = [att.last_name.capitalize, att.first_name.capitalize,
-        #               att.email, att.zipcode,
-        #               att.city.split.map(&:capitalize)*' ', att.street,
-        #               att.state, att.phone,]
-        file.puts
+        temp_hash = {last_name: att.last_name.capitalize, first_name: att.first_name.capitalize,
+                     email: att.email, zipcode: att.zipcode, city: att.city.split.map(&:capitalize)*' ',
+                     street: att.street, state: att.state, phone: att.phone}
+        file.puts temp_hash.to_json
       end
     end
   end
