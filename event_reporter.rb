@@ -125,7 +125,7 @@ class EventReporter
     if queue.count == 0
       puts "Please load file and search for something to print."
     else
-      format = '%-10s %-10s %-30s %-7s %-15s %-6s %-28s %s'
+      format = '%-10s %-10s %-35s %-7s %-15s %-6s %-38s %s'
       puts format % table_header
 
         if third_command != nil

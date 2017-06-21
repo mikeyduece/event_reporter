@@ -1,9 +1,11 @@
 require 'csv'
 require 'erb'
 require './lib/attendee_repo'
+require './lib/event_messages'
 # require 'sunlight/congress'
 
 class Queue
+  include EventMessages
   # Sunlight::Congress.api_key = "e179a6973728c4dd3fb1204283aaccb5"
   attr_reader :attendees, :all_attendees, :er, :queued
 
@@ -64,13 +66,12 @@ class Queue
   def save_txt(filename)
     Dir.mkdir("txt") unless Dir.exists? "txt"
     file = "txt/#{filename}"
+    format = '%-10s %-10s %-35s %-7s %-15s %-6s %-28s %s'
 
-    headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
-               :city,:state,:zipcode]
     File.open("#{file}","w") do |file|
-      file << headers
+      sprintf % table_header
       queued.map do |att|
-        file << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
+        sprintf % file << [att.last_name, att.first_name, att.email,
                 att.phone, att.street, att.city, att.state, att.zipcode]
       end
     end
