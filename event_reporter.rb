@@ -16,7 +16,7 @@ class EventReporter
     @first_command  = nil
     @second_command = nil
     @third_command  = nil
-    @loaded = false
+    @loaded         = false
   end
 
   def first_command
@@ -31,10 +31,18 @@ class EventReporter
     @third_command
   end
 
+  def start
+    welcome
+    get_input
+    if quit_commands(first_command)
+      exit
+    else
+      start_commands(first_command)
+    end
+  end
 
   def help(command)
     help_commands if command == nil
-    # require "pry"; binding.pry
     case command
     when "queue"      then queue_help(third_command)
     when "find"       then find_help
@@ -45,15 +53,6 @@ class EventReporter
     start
   end
 
-  def start
-    welcome
-    get_input
-    if quit_commands(first_command)
-      exit
-    else
-      start_commands(first_command)
-    end
-  end
 
   def start_commands(command)
     case command
@@ -116,9 +115,9 @@ class EventReporter
   end
 
   def set_commands
-    @first_command = commands.first_command
+    @first_command  = commands.first_command
     @second_command = commands.second_command if commands.second_command != nil
-    @third_command = commands.third_command if commands.third_command != nil
+    @third_command  = commands.third_command if commands.third_command != nil
   end
 
   def printer(third_command=nil)
@@ -129,27 +128,27 @@ class EventReporter
       puts format % table_header
 
         if third_command != nil
-          sorted = queue.queued.sort_by(&:last_name)
+          sorted  = queue.queued.sort_by(&:last_name)
           sorted.map do |attendee|
-            last = attendee.last_name.capitalize
+            last  = attendee.last_name.capitalize
             first = attendee.first_name.capitalize
             email = attendee.email
-            zip = attendee.zipcode
-            city = attendee.city
+            zip   = attendee.zipcode
+            city  = attendee.city
             state = attendee.state
-            addy = attendee.street
+            addy  = attendee.street
             phone = format_phone(attendee.phone)
             puts format % [last,first,email,zip,city,state,addy,phone]
           end
         else
           queue.queued.map do |attendee|
-            last = attendee.last_name.capitalize
+            last  = attendee.last_name.capitalize
             first = attendee.first_name.capitalize
             email = attendee.email
-            zip = attendee.zipcode
-            city = attendee.city
+            zip   = attendee.zipcode
+            city  = attendee.city.split.map(&:capitalize)*' '
             state = attendee.state
-            addy = attendee.street
+            addy  = attendee.street
             phone = format_phone(attendee.phone)
             puts format % [last,first,email,zip,city,state,addy,phone]
           end

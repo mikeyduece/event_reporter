@@ -10,10 +10,10 @@ class AttendeeRepo
 
   def open_file(filename)
     CSV.foreach filename, headers: true, header_converters: :symbol do |row|
-      row[:zipcode]=clean_zipcode(row[:zipcode])
-      homephone = clean_phone(row[:homephone])
+      row[:zipcode]= clean_zipcode(row[:zipcode])
+      homephone    = clean_phone(row[:homephone])
       @all_attendees << Attendee.new(row)
-      id = row[0]
+      id           = row[0]
     end
   end
 
@@ -22,8 +22,9 @@ class AttendeeRepo
   end
 
   def clean_phone(homephone)
-    homephone.tr!("(),' ',-","")
+    homephone.gsub!(/[x.()' '-]/, "")
     homephone[0] = "" if homephone.start_with?("1")
+    homephone.to_s.ljust(10,"0")[0..9]
   end
 
   def all

@@ -31,15 +31,6 @@ class Queue
     @queued = []
   end
 
-  def legislators_by_zipcode(zipcode)
-    legislators = Sunlight::Congress::Legislator.by_zipcode(zipcode)
-
-    legislator_names = legislators.collect do |legislator|
-    "#{legislator.first_name} #{legislator.last_name}"
-    end
-    legislator_names.join(", ")
-  end
-
   def save_to(filename)
     if er.third_command.include?(".csv")
       save_csv(filename)
@@ -58,8 +49,8 @@ class Queue
 
   def save_html(filename)
     template_letter = File.read "template.erb"
-    erb_letter = ERB.new template_letter
-    form_letter = erb_letter.result(binding)
+    erb_letter      = ERB.new template_letter
+    form_letter     = erb_letter.result(binding)
 
     Dir.mkdir("html") unless Dir.exists? "html"
     file = "html/#{filename}"
@@ -89,7 +80,7 @@ class Queue
 
   def save_csv(filename)
     Dir.mkdir("csv_output") unless Dir.exists? "csv_output"
-    file = "csv_output/#{filename}"
+    file    = "csv_output/#{filename}"
 
     headers = [:id,:reg_date,:first_name,:last_name,:email,:phone,:street,
                :city,:state,:zipcode]

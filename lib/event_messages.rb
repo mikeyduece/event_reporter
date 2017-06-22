@@ -75,7 +75,7 @@ module EventMessages
   end
 
   def wrong_number_of_args
-    if second_command != nil && third_command == nil
+    if second_command    != nil && third_command == nil
       puts "Wrong number of aruments. Given: 1 Expected: 2"
     elsif second_command == nil && third_command == nil
       puts "Wrong number of arguments. Given: 0 Expecting: 2"
@@ -91,8 +91,7 @@ module EventMessages
   end
 
   def format_phone(phone)
-    phone.insert(0,'(').insert(4,')').insert(5,' ').insert(9,'-')
+    phone.insert(0,'(').insert(4,')')#.insert(5,' ')#.insert(9,'-')
   end
-
 
 end
