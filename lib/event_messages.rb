@@ -94,4 +94,13 @@ module EventMessages
     phone.insert(0,'(').insert(4,')')#.insert(5,' ')#.insert(9,'-')
   end
 
+  def pause(index)
+    if ((index%10 == 0) && (index != 0))
+      puts ""
+      puts "Showing Matches #{index-9} through #{index} of #{@queue.count}.".yellow.underline
+      puts "Press Enter to Contine:".white.bold
+      x = gets.chomp
+    end
+  end
+
 end

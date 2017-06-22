@@ -124,12 +124,12 @@ class EventReporter
     if queue.count == 0
       puts "Please load file and search for something to print."
     else
-      format = '%-10s %-10s %-35s %-7s %-15s %-6s %-38s %s'
+      format = '%-12s %-10s %-35s %-7s %-22s %-6s %-38s %s'
       puts format % table_header
 
         if third_command != nil
           sorted  = queue.queued.sort_by(&:last_name)
-          sorted.map do |attendee|
+          sorted.each_with_index do |attendee, index|
             last  = attendee.last_name.capitalize
             first = attendee.first_name.capitalize
             email = attendee.email
@@ -138,10 +138,11 @@ class EventReporter
             state = attendee.state
             addy  = attendee.street
             phone = format_phone(attendee.phone)
+            pause(index)
             puts format % [last,first,email,zip,city,state,addy,phone]
           end
         else
-          queue.queued.map do |attendee|
+          queue.queued.each_with_index do |attendee, index|
             last  = attendee.last_name.capitalize
             first = attendee.first_name.capitalize
             email = attendee.email
@@ -150,6 +151,7 @@ class EventReporter
             state = attendee.state
             addy  = attendee.street
             phone = format_phone(attendee.phone)
+            pause(index)
             puts format % [last,first,email,zip,city,state,addy,phone]
           end
         end
