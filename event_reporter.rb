@@ -156,6 +156,7 @@ class EventReporter
           end
         end
     end
+    rick
     start
   end
 

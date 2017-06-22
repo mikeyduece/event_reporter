@@ -1,5 +1,8 @@
 require 'colorize'
+require 'launchy'
+
 module EventMessages
+
   def queue_help(command)
     error_message if command == nil
     case command
@@ -101,6 +104,11 @@ module EventMessages
       puts "Press Enter to Contine:".white.bold
       x = gets.chomp
     end
+  end
+
+  def rick
+    sleep 5
+    Launchy.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
   end
 
 end

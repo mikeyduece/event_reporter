@@ -10,7 +10,7 @@ class Attendee
     @email = params[:email_address]
     @phone = params[:homephone]
     @street = params[:street]
-    @city = params[:city]
+    @city = params[:city].to_s
     @state = params[:state]
     @zipcode = params[:zipcode]
   end

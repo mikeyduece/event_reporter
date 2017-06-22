@@ -65,13 +65,13 @@ class Queue
     file = "txt/#{filename}"
 
     File.open("#{file}","w") do |file|
-      format = '%-10s %-10s %-35s %-7s %-15s %-6s %-28s %s'
+      format = '%-12s %-10s %-35s %-7s %-22s %-6s %-38s %s'
       file.puts format % table_header
       queued.map do |att|
         attributes = [att.last_name.capitalize, att.first_name.capitalize,
                       att.email, att.zipcode,
-                      att.city.split.map(&:capitalize)*' ', att.street,
-                      att.state, att.phone,]
+                      att.city.split.map(&:capitalize)*' ', att.state,
+                      att.street, att.phone]
         file.puts format % attributes
       end
     end
@@ -88,7 +88,7 @@ class Queue
       csv << headers
       queued.map do |att|
         csv << [att.id, att.reg_date, att.first_name, att.last_name, att.email,
-                format_phone(att.phone), att.street, att.city, att.state,
+                att.phone, att.street, att.city, att.state,
                 att.zipcode]
       end
     end

@@ -1,11 +1,11 @@
-LAST NAME  FIRST NAME EMAIL                               ZIPCODE CITY            STATE  ADDRESS                      PHONE
-Golembeck  Mike       ia284@jumpstartlab.com              83709   Boise           4498 South Silverhills Ave. ID                           ((20) 8) -870-2000
-Downs      Mike       jnhorter@jumpstartlab.com           26508   Morgantown      1129 Andrew Dr. WV                           ((72) 4) -561-6000
-Jordan     Mike       cweengoblin72@jumpstartlab.com      07430   Mahwah          505 Ramapo Valley Rd/8206 The Overlook NJ                           ((64) 6) -584-9000
-Rosett     Mike       xwretzvj@jumpstartlab.com           02912   Providence      69 Brown Street RI                           ((91) 4) -841-2000
-D          Mike       ytthewayc@jumpstartlab.com          97201   Portland        1809 SW 11th ave. #212 OR                           ((50) 3) -951-8000
-Rohlf      Mike       fhloni@jumpstartlab.com             24153   Salem           221 college lane VA                           ((54) 0) -797-0000
-Fasic      Mike       ykthin@jumpstartlab.com             97201   Portland        1912 SW 6th Ave #708 OR                           ((50) 3) -267-1000
-Herron     Mike       nlathasj@jumpstartlab.com           14454   Geneseo         13 Court St NY                           ((71) 6) -361-6000
-Maloney    Mike       ahillemsen1@jumpstartlab.com        11215   Brooklyn        459 7th Ave, Apt 1 NY                           ((43) 4) -907-1000
-O-a        Mike       wsapickf@jumpstartlab.com           04609   Bar Harbor      105 eden st ME                           ((20) 9) -590-8000
+LAST NAME    FIRST NAME EMAIL                               ZIPCODE CITY                   STATE  ADDRESS                                PHONE
+Golembeck    Mike       ia284@jumpstartlab.com              83709   Boise                  ID     4498 South Silverhills Ave.            (208)8702000
+Downs        Mike       jnhorter@jumpstartlab.com           26508   Morgantown             WV     1129 Andrew Dr.                        (724)5616000
+Jordan       Mike       cweengoblin72@jumpstartlab.com      07430   Mahwah                 NJ     505 Ramapo Valley Rd/8206 The Overlook (646)5849000
+Rosett       Mike       xwretzvj@jumpstartlab.com           02912   Providence             RI     69 Brown Street                        (914)8412000
+D            Mike       ytthewayc@jumpstartlab.com          97201   Portland               OR     1809 SW 11th ave. #212                 (503)9518000
+Rohlf        Mike       fhloni@jumpstartlab.com             24153   Salem                  VA     221 college lane                       (540)7970000
+Fasic        Mike       ykthin@jumpstartlab.com             97201   Portland               OR     1912 SW 6th Ave #708                   (503)2671000
+Herron       Mike       nlathasj@jumpstartlab.com           14454   Geneseo                NY     13 Court St                            (716)3616000
+Maloney      Mike       ahillemsen1@jumpstartlab.com        11215   Brooklyn               NY     459 7th Ave, Apt 1                     (434)9071000
+O-a          Mike       wsapickf@jumpstartlab.com           04609   Bar Harbor             ME     105 eden st                            (209)5908000
