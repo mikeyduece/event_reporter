@@ -8,7 +8,7 @@ class Attendee
     @first_name = params[:first_name].downcase
     @last_name = params[:last_name].downcase
     @email = params[:email_address]
-    @phone = params[:homephone]
+    @phone = params[:homephone].to_s
     @street = params[:street]
     @city = params[:city].to_s
     @state = params[:state]

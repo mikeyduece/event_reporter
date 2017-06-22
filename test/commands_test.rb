@@ -14,8 +14,6 @@ class CommandsTest < Minitest::Test
   end
 
   def test_can_change_join_second_entry_into_one
-    skip
-    q.loader
     var      = ("find first name John").split
     actual   = com.second_entry(var)
     expected = ["find","first_name","John"]

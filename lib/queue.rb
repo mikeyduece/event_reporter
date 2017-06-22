@@ -115,9 +115,9 @@ class Queue
 
     File.open("#{file}","w") do |file|
       queued.map do |att|
-        temp_hash={last_name: att.last_name.capitalize, first_name: att.first_name.capitalize,
+        temp_hash={attendee: {last_name: att.last_name.capitalize, first_name: att.first_name.capitalize,
         email: att.email, zipcode: att.zipcode, city: att.city.split.map(&:capitalize)*' ',
-        street: att.street, state: att.state, phone: att.phone}
+        street: att.street, state: att.state, phone: att.phone}}
         file.puts Gyoku.xml(temp_hash)
       end
     end

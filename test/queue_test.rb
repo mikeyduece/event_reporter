@@ -1,18 +1,16 @@
 require './test/test_helper'
 require './lib/queue'
+require './lib/event_engine'
 
 class QueueTest < Minitest::Test
-  attr_reader :queue
+  attr_reader :queue, :ee
   def setup
     @queue = Queue.new
+    @ee    = EventEngine.new
   end
 
   def test_its_a_thing
     assert_instance_of Queue, queue
-  end
-
-  def test_does_it_load_file
-    assert File.exists?("./data/full_event_attendees.csv")
   end
 
   def test_queue_count_zero_by_default
@@ -20,6 +18,7 @@ class QueueTest < Minitest::Test
   end
 
   def test_it_can_find_johns
+    skip
     queue.finder("first_name","John")
     assert_equal 63, queue.count
   end

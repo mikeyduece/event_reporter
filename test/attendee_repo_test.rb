@@ -2,59 +2,36 @@ require './test/test_helper'
 require './lib/attendee_repo'
 
 class AttendeeRepoTest < Minitest::Test
-  attr_reader :ar, :q
+  attr_reader :ar, :ee
 
   def setup
-    @q  = Queue.new
-    @ar = AttendeeRepo.new#("./data/event_attendees.csv")
+    @ar = AttendeeRepo.new
   end
 
   def test_its_a_thing
     assert_instance_of AttendeeRepo, ar
   end
-  #
-  # def test_it_can_find_all_attendees
-  #   q.loader
-  #   assert_equal 19, q.all_attendees.count
-  # end
-  #
-  # def test_it_can_find_by_id
-  #   assert_instance_of Attendee, q.all_attendees.finder("id", 1)[0]
-  # end
-  #
-  # def test_it_can_find_by_first_name
-  #   assert_equal 2, q.all_attendees.finder("first_name","Sarah").count
-  #   assert_instance_of Array, q.all_attendees.finder("first_name","Sarah")
-  #   assert_instance_of Attendee, q.all_attendees.finder("first_name","Sarah")[0]
-  # end
-  #
-  # def test_it_can_find_by_last_name
-  #   assert_equal 1, q.all_attendees.finder("last_name","Nguyen").count
-  #   assert_instance_of Array, q.all_attendees.finder("last_name","Nguyen")
-  #   assert_instance_of Attendee, q.all_attendees.finder("last_name","Nguyen")[0]
-  # end
-  #
-  # # def test_it_can_find_by_street
-  # #   assert_equal 1, q.all_attendees.finder("street","3024 Cranbrook Ct").count
-  # #   assert_instance_of Array, q.all_attendees.finder("street","3024 Cranbrook Ct")
-  # #   assert_instance_of Attendee, q.all_attendees.finder("street","3024 Cranbrook Ct")[0]
-  # # end
-  #
-  # def test_it_can_find_by_state
-  #   assert_equal 3, q.all_attendees.finder("state","CA").count
-  #   assert_instance_of Array, q.all_attendees.finder("state","CA")
-  #   assert_instance_of Attendee, q.all_attendees.finder("state","CA")[0]
-  # end
-  #
-  # def test_it_can_find_by_zipcode
-  #   assert_equal 1, q.all_attendees.finder("zipcode", "95667").count
-  #   assert_instance_of Array, q.all_attendees.finder("zipcode", "95667")
-  #   assert_instance_of Attendee, q.all_attendees.finder("zipcode", "95667")[0]
-  # end
-  #
-  # def test_it_can_find_by_phone_number
-  #   assert_equal 1, q.all_attendees.finder("phone", "787-295-0000").count
-  #   assert_instance_of Array, q.all_attendees.finder("phone", "787-295-0000")
-  #   assert_instance_of Attendee, q.all_attendees.finder("phone", "787-295-0000")[0]
-  # end
+
+  def test_it_can_clean_zipcode
+    zip_1 = "967"
+    zip_2 = ""
+    zip_3 = 12345656
+    assert_equal "00967", ar.clean_zipcode(zip_1)
+    assert_equal "00000", ar.clean_zipcode(zip_2)
+    assert_equal "12345", ar.clean_zipcode(zip_3)
+  end
+
+  def test_it_can_clean_phone
+    phone_1 = ""
+    phone_2 = "(58x.840)356"
+    phone_3 = "345"
+    assert_equal "0000000000", ar.clean_phone(phone_1)
+    assert_equal "5884035600", ar.clean_phone(phone_2)
+    assert_equal "3450000000", ar.clean_phone(phone_3)
+  end
+
+  def test_it_can_see_all_attendees
+    ar.open_file("./data/full_event_attendees.csv")
+    assert_equal 5175, ar.all.count
+  end
 end
