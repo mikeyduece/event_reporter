@@ -1,5 +1,4 @@
 require 'colorize'
-require 'launchy'
 
 module EventMessages
 
@@ -93,10 +92,6 @@ module EventMessages
     puts "Your file was not saved, please try again."
   end
 
-  def format_phone(phone)
-    phone.insert(0,'(').insert(4,')')#.insert(5,' ')#.insert(9,'-')
-  end
-
   def pause(index)
     if ((index%10 == 0) && (index != 0))
       puts ""
@@ -104,11 +99,6 @@ module EventMessages
       puts "Press Enter to Contine:".white.bold
       x = gets.chomp
     end
-  end
-
-  def rick
-    sleep 5
-    Launchy.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
   end
 
 end

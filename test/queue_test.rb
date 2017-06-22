@@ -3,10 +3,11 @@ require './lib/queue'
 require './lib/event_engine'
 
 class QueueTest < Minitest::Test
-  attr_reader :queue, :ee
+  attr_reader :queue, :ee, :ar
   def setup
     @queue = Queue.new
     @ee    = EventEngine.new
+    @ar    = AttendeeRepo.new
   end
 
   def test_its_a_thing
@@ -19,6 +20,8 @@ class QueueTest < Minitest::Test
 
   def test_it_can_find_johns
     skip
+    ar.open_file("./data/full_event_attendees.csv")
+    require "pry"; binding.pry
     queue.finder("first_name","John")
     assert_equal 63, queue.count
   end

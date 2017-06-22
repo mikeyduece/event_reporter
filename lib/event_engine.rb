@@ -41,6 +41,17 @@ class EventEngine
     end
   end
 
+  def start_commands(command)
+    case command
+    when "queue" then queue_commands(second_command, third_command)
+    when "help"  then help(second_command)
+    when "load"  then load_csv
+    when "find"  then find(second_command,third_command)
+    else
+      start
+    end
+  end
+
   def help(command)
     help_commands if command == nil
     case command
@@ -51,18 +62,6 @@ class EventEngine
     else help_commands
     end
     start
-  end
-
-
-  def start_commands(command)
-    case command
-    when "queue" then queue_commands(second_command, third_command)
-    when "help"  then help(second_command)
-    when "load"  then load_csv
-    when "find"  then find(second_command,third_command)
-    else
-      start
-    end
   end
 
   def quit_commands(command)
@@ -124,7 +123,7 @@ class EventEngine
     if queue.count == 0
       puts "Please load file and search for something to print."
     else
-      format = '%-12s %-10s %-35s %-7s %-22s %-6s %-38s %s'
+      format = '%-12s %-10s %-36s %-7s %-26s %-6s %-40s %s'
       puts format % table_header
 
         if third_command != nil
@@ -137,7 +136,7 @@ class EventEngine
             city  = attendee.city
             state = attendee.state
             addy  = attendee.street
-            phone = format_phone(attendee.phone)
+            phone = attendee.phone
             pause(index)
             puts format % [last,first,email,zip,city,state,addy,phone]
           end
@@ -150,16 +149,13 @@ class EventEngine
             city  = attendee.city.split.map(&:capitalize)*' '
             state = attendee.state
             addy  = attendee.street
-            phone = format_phone(attendee.phone)
+            phone = attendee.phone
             pause(index)
             puts format % [last,first,email,zip,city,state,addy,phone]
           end
         end
     end
-    rick
     start
   end
 
 end
-# start = EventReporter.new
-# start.start

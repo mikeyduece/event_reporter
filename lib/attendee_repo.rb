@@ -22,7 +22,7 @@ class AttendeeRepo
   end
 
   def clean_phone(homephone)
-    homephone.gsub!(/[x.()' '-]/, "")
+    homephone.gsub!(/[x.+()' '-]/, "")
     homephone[0] = "" if homephone.start_with?("1")
     homephone.to_s.ljust(10,"0")[0..9]
   end
