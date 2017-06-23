@@ -8,8 +8,7 @@ require './lib/event_messages'
 
 class Queue
   include EventMessages
-  attr_reader :er, :queued#:attendees, :all_attendees,
-
+  attr_reader :er, :queued, :attendees
 
   def initialize(parent=nil)
     @er        = parent
